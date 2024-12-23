@@ -63,7 +63,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
     <main className='flex'>
       <PreviewPageSideBar />
       <section className='flex-1 overflow-auto space-y-4 flex flex-col min-h-[500px]'>
-        <Topbar />
+        <Topbar title='Data Overview'/>
         <div className="px-4 flex flex-col  overflow-x-hidden">
           
 
@@ -81,9 +81,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
             </div>
           </div> */}
 
-          <span className='font-bold text-32'>Data Overview</span>
-
-
+          {/* <span className='font-bold text-32'>Data Overview</span> */}
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 pl-0 items-center border-b">
             {/* Dataset Name */}
@@ -91,7 +89,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
               <h3 className="text-14 uppercase text-muted-foreground mb-2">Dataset</h3>
               <p className="text-16 font-bold ">
                 {isTableDatasetLoading ? (
-                  <Skeleton className="h-8 w-64 " />
+                  <Skeleton className="h-8 w-32 " />
                 ) : (
                   tableDatasetData?.dataset_name
                 )}

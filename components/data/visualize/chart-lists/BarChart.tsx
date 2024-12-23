@@ -36,6 +36,7 @@ const BarChart: React.FC<BarChartProps> = ({
       // right: '20%',
       // bottom: '20%',
       // top: '20%',
+      show: false,
       containLabel: true,
     },
     xAxis: {
