@@ -16,6 +16,7 @@ import {
 import React, { Suspense, useEffect, useState } from 'react';
 import { ChartCreateSideBar } from './chart-create-sidebar';
 import Topbar from '@/components/common/top-bar';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 
 const PreviewCharts = React.lazy(() => import('./PreviewCharts'));
@@ -44,13 +45,13 @@ const DataVisualizePage = ({
   );
 
   return (
-    <main className='flex'>
+    <div className='flex'>
       <ChartCreateSideBar workspaceId={workspaceId} datasetId={datasetId} />
       {
-        <div className="w-full h-full overflow-auto flex flex-col ">
+        <div className="w-full h-full">
           <Topbar layout="dataset" title='Data Visualization' workspaceId={workspaceId} datasetId={datasetId} />
           <div className="w-full p-4 flex items-center justify-start gap-4">
-            <div className="relative flex items-center">
+            <div className="relative flex items-center w-full">
               <Search size={16} className="absolute left-3" />
               <input
                 type="text"
@@ -94,7 +95,7 @@ const DataVisualizePage = ({
           </Suspense>
         </div>
       }
-    </main>
+    </div>
   );
 };
 

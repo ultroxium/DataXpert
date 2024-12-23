@@ -21,12 +21,12 @@ const fetchWorkspaceById = async (workspaceId: string): Promise<any> => {
 };
 
 // API fetch function for datasets by workspace ID
-const fetchDatasets = async (workspaceId: string): Promise<any> => {
+export const fetchDatasets = async (workspaceId: string): Promise<any> => {
   const response = await axios.get(`/dashboard/api?type=datasets&wid=${workspaceId}`);
   return response.data;
 };
 
-const fetchDefaultDatasets = async (): Promise<any> => {
+export const fetchDefaultDatasets = async (): Promise<any> => {
   const response = await axios.get(`/dashboard/api?type=default`);
   return response.data;
 };

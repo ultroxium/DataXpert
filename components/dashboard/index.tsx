@@ -91,10 +91,10 @@ const DashboardComponent = ({
         workspaceName={workspaceName}
       />
       <div className='flex-1 overflow-auto space-y-4 flex flex-col'>
-        <Topbar />
+        <Topbar title='Dashboard' />
         <div className="px-4 space-y-6">
           <div className="flex gap-4">
-            <FeatureButton icon={<LineChart size={16} className='text-white' />} label="Visualization Hub" color="bg-rose-600" datasets={sortedDatasets} router={router} tab="visualize"/>
+            <FeatureButton icon={<LineChart size={16} className='text-white' />} label="Visualization Hub" color="bg-rose-600" router={router} widNo={widNo}/>
           </div>
 
           <div className="flex justify-between items-center">
@@ -130,30 +130,15 @@ const DashboardComponent = ({
   );
 };
 
-const FeatureButton = ({ icon, label, color, datasets,router,tab }) => (
-  <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-      <Button variant="ghost" className="w-40 h-24 py-4 flex flex-col items-center justify-center gap-2">
+const FeatureButton = ({ icon, label, color,router,widNo }) => (
+  <Button variant="ghost" className="w-40 h-24 py-4 flex flex-col items-center justify-center gap-2" onClick={()=>{
+    router.push(`/visualization-hub?wid=${widNo}`)
+  }}>
         <span className={`w-8 h-8 rounded-full ${color} flex items-center justify-center`}>
           {icon}
         </span>
         <span className='text-muted-foreground font-semibold text-xs'>{label}</span>
       </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent className="w-64" align="start">
-      <DropdownMenuLabel>Choose Dataset</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuGroup>
-        {datasets?.map((file: any, index: number) => (
-          <DropdownMenuItem key={index} onClick={()=>{
-            router.push(`datasets/${file?.workspace_id}/${file?.id}?tab=${tab}`)
-          }}>
-            {file.name}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuGroup>
-    </DropdownMenuContent>
-  </DropdownMenu>
 );
 
 const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
