@@ -95,7 +95,7 @@ const SignupForm=()=> {
       const success = await setPassword(userMail, values.password);
       if (success) {
         actions.setSubmitting(false);
-        window.location.href = '/auth/login';
+        window.location.href = '/login';
       }
     }
   };
@@ -105,9 +105,9 @@ const SignupForm=()=> {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center">
+    <div className="h-screen w-screen flex items-center justify-center">
 
-        <Card className="max-w-sm border-none shadow-lg">
+        <Card className="max-w-sm border-none shadow-none w-full">
           <CardHeader>
             <Link href="/">
               <Logo />
@@ -297,19 +297,9 @@ const SignupForm=()=> {
             </Formik>
           </CardContent>
           <CardFooter className="flex flex-col items-start">
-            <CardDescription className="text-xs">
-              {'By clicking "Continue with Google/Email" you agree to our User'}{' '}
-              <Link href="#" className="underline">
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link href={'#'} className="underline">
-                Privacy Policy
-              </Link>
-            </CardDescription>
-            <div className="mt-4 text-sm">
+            <div className="text-sm">
               Already have an account?{' '}
-              <Link href="/auth/login" className="underline font-semibold">
+              <Link href="/login" className="underline font-semibold">
                 Log in
               </Link>
             </div>

@@ -46,7 +46,7 @@ const LoginPage =() => {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <Card className="shadow-lg border-none w-full max-w-sm">
+      <Card className="shadow-none border-none w-full max-w-sm">
         <CardHeader className="space-y-4">
           <Link href="/" className="inline-block">
             <Logo />
@@ -138,19 +138,9 @@ const LoginPage =() => {
           </Formik>
         </CardContent>
         <CardFooter className="flex flex-col items-start space-y-4">
-          <CardDescription className="text-xs">
-            {"By clicking 'Log in' you agree to our "}
-            <Link href="#" className="underline hover:text-primary">
-              Terms of Service
-            </Link>{' '}
-            and{' '}
-            <Link href="#" className="underline hover:text-primary">
-              Privacy Policy
-            </Link>
-          </CardDescription>
           <div className="text-sm">
             Don&apos;t have an account?{' '}
-            <Link href="/auth/register" className="font-semibold hover:underline">
+            <Link href="/register" className="font-semibold hover:underline">
               Sign up
             </Link>
           </div>

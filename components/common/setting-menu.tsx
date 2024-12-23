@@ -44,7 +44,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ isLabel }) => {
     closeSocket();
     localStorage.clear();
     Cookies.remove('token');
-    // router.push('/auth/login');
+    // router.push('/login');
     toast('You have been logged out successfully.', {
       position: 'top-right',
       duration: 2000,

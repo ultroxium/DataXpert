@@ -41,7 +41,7 @@ export default function Navbar() {
                   <span className="sr-only">Toggle theme</span>
                 </Button>
               )}
-              <Link href="/auth/login">
+              <Link href="/login">
                 <Button variant="default">
                   Get Started
                 </Button>

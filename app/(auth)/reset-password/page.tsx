@@ -81,7 +81,7 @@ const PasswordReset = () => {
               onSubmit={async (values) => {
                 const success = await passwordReset(key, values.password);
                 if (success) {
-                  router.push('/auth/login');
+                  router.push('/login');
                 }
               }}>
               {({ values }) => (
@@ -165,7 +165,7 @@ const PasswordReset = () => {
             </Formik>
           </CardContent>
           <CardFooter>
-            <Link href="/auth/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Back to login
             </Link>
           </CardFooter>

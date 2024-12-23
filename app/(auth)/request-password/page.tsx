@@ -87,7 +87,7 @@ const PasswordReset = () => {
             </>
           )}
           <CardFooter>
-            <Link href="/auth/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Back to login
             </Link>
           </CardFooter>

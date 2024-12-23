@@ -9,24 +9,24 @@ import {
 
 const faqs = [
   {
-    question: "What is DataViz Pro?",
-    answer: "DataViz Pro is a comprehensive data visualization and analysis platform designed to help businesses and individuals transform complex data into actionable insights through interactive charts, graphs, and AI-powered analytics."
+    question: "What is DataXpert tool for?",
+    answer: "DataXpert is a comprehensive data visualization and analysis platform designed to help businesses and individuals transform complex data into actionable insights through interactive charts, graphs, and AI-powered analytics."
   },
   {
-    question: "How does the AI Assistant work?",
-    answer: "Our AI Assistant uses advanced machine learning algorithms to analyze your data, identify patterns, and provide instant insights. It can answer questions about your data in natural language, suggest visualizations, and even predict trends based on historical data."
+    question: "Is this free?",
+    answer: "Yes, this tool is completely free and open-source."
   },
   {
-    question: "Can I collaborate with my team on DataViz Pro?",
-    answer: "DataViz Pro offers robust collaboration features. You can share dashboards, work on projects simultaneously with team members, and even set different permission levels for various users. Real-time updates ensure everyone stays on the same page."
+    question: "Can I collaborate with my team on DataXpert?",
+    answer: "DataXpert offers robust collaboration features. You can share dashboards, work on projects simultaneously with team members, and even set different permission levels for various users. Real-time updates ensure everyone stays on the same page."
   },
   {
-    question: "What types of data can I upload to DataViz Pro?",
-    answer: "DataViz Pro supports a wide range of data formats including CSV, JSON, Excel files, and SQL databases. You can also connect to various APIs to import data directly from other platforms and services."
+    question: "What types of data can I upload to DataXpert?",
+    answer: "DataXpert supports a CSV data. You can also connect to various APIs to import data directly from other platforms and services."
   },
   {
-    question: "Is my data secure on DataViz Pro?",
-    answer: "We take data security very seriously. All data is encrypted both in transit and at rest. We use industry-standard security protocols and regularly undergo third-party security audits to ensure your data remains protected."
+    question: "How to report bug?",
+    answer: "Please DM me on twitter or open an issue on GitHub, and I’ll address it as soon as possible. Your assistance in fixing it would be greatly appreciated."
   }
 ]
 
