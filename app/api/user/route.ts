@@ -42,8 +42,8 @@ export async function GET(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response.data.detail || error.message}` },
-        { status: error.response.status },
+        { message: `${error.response?.data.detail || error.message}` },
+        { status: error.response?.status },
       );
     } else {
       return NextResponse.json({ message: `Error: ${error}` }, { status: 500 });
@@ -78,8 +78,8 @@ export async function POST(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response.data.detail || error.message}` },
-        { status: error.response.status },
+        { message: `${error.response?.data.detail || error.message}` },
+        { status: error.response?.status },
       );
     } else {
       return NextResponse.json({ message: `Error: ${error}` }, { status: 500 });
@@ -103,13 +103,16 @@ export async function DELETE(req: Request) {
   const url = new URL(req.url);
   const id = url.searchParams.get('id');
   try {
+    if (!id) {
+      return NextResponse.json({ message: 'Invalid id parameter' }, { status: 400 });
+    }
     const response = await removeMember(id);
     return NextResponse.json(response.data);
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response.data.detail || error.message}` },
-        { status: error.response.status },
+        { message: `${error.response?.data.detail || error.message}` },
+        { status: error.response?.status },
       );
     } else {
       return NextResponse.json({ message: `Error: ${error}` }, { status: 500 });
@@ -135,7 +138,7 @@ export async function PUT(req: Request) {
 
   let response;
   try {
-    if (type === 'roles') {
+    if (type === 'roles' && id) {
       const data = await req.json();
       response = await updateRoles(id, data);
     } else {
@@ -144,8 +147,8 @@ export async function PUT(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response.data.detail || error.message}` },
-        { status: error.response.status },
+        { message: `${error.response?.data.detail || error.message}` },
+        { status: error.response?.status },
       );
     } else {
       return NextResponse.json({ message: `Error: ${error}` }, { status: 500 });

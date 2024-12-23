@@ -38,7 +38,7 @@ const DatasetActions = ({
   FilteredWorkspaces,
   deleteDatasetMutation,
   moveDatasetMutation,
-}) => {
+}:any) => {
   const router = useRouter();
   const { duplicateDataset }: any = useDatasetStore();
   const [open, setOpen] = useState(false);
