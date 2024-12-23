@@ -75,6 +75,7 @@ export default function VisualizationHubComponent() {
                                                 onClick={() => window.open(`/datasets/${data?.workspace_id}/${data?.id}?tab=visualize`, '_blank')}
                                             />
                                         </div>
+                                        <div className="absolute right-0 top-0 h-full w-4 bg-green-600 rounded-bl-lg"></div>
                                     </CardContent>
                                     <CardFooter className="p-2 text-sm font-medium truncate">
                                         {data?.name || `Dataset ${data?.id}`}
