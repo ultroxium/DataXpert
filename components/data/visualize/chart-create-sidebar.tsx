@@ -40,6 +40,7 @@ import {
 } from '@/components/ui/sidebar'
 import Link from 'next/link';
 import Logo from '@/components/logo';
+import { ChartSelector } from './ChartSelector';
 
 
 export function ChartCreateSideBar({
@@ -146,7 +147,7 @@ export function ChartCreateSideBar({
                         {({ setFieldValue, values }) => (
                             <Form className="flex flex-col gap-6">
                                 <div className="flex flex-col gap-2">
-                                    <Label htmlFor="title">Chart Title</Label>
+                                    <Label htmlFor="title" className='text-xs uppercase text-muted-foreground'>Chart Title</Label>
                                     <Field as={Input} id="title" name="title" placeholder="Enter title" />
                                     <ErrorMessage
                                         name="title"
@@ -167,14 +168,14 @@ export function ChartCreateSideBar({
                                     />
                                     <label
                                         htmlFor="isSingle"
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                        className="font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-xs text-muted-foreground">
                                         Is Single Column?
                                     </label>
                                 </div>
                                 {values.isSingle ? (
                                     <>
                                         <div className="w-full flex flex-col gap-2">
-                                            <Label htmlFor="Column">Select Column</Label>
+                                            <Label htmlFor="Column" className='text-xs uppercase text-muted-foreground'>Select Column</Label>
                                             <MultiSelector
                                                 options={columnDetails?.map((col: any) => col.name)}
                                                 isMultiple={false}
@@ -185,7 +186,7 @@ export function ChartCreateSideBar({
                                             />
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <Label htmlFor="chartType">Chart Type</Label>
+                                            <Label htmlFor="chartType" className='text-xs uppercase text-muted-foreground'>Chart Type</Label>
                                             <Select
                                                 onValueChange={(value) => {
                                                     setFieldValue('key', value);
@@ -210,7 +211,7 @@ export function ChartCreateSideBar({
                                         {ChartsList?.filter((chart) => values.key === chart.key)?.map(
                                             (chart) => (
                                                 <div className="w-full" key={chart.id}>
-                                                    <Label htmlFor="option">Plot Options</Label>
+                                                    <Label htmlFor="option" className='text-xs uppercase text-muted-foreground'>Plot Options</Label>
                                                     <Select
                                                         onValueChange={(value) => {
                                                             setFieldValue('option', value);
@@ -255,7 +256,7 @@ export function ChartCreateSideBar({
                                 ) : (
                                     <>
                                         <div>
-                                            <div className="mb-4 flex flex-col gap-2">
+                                            {/* <div className="mb-4 flex flex-col gap-2">
                                                 <Label htmlFor="chartType">Chart Type</Label>
                                                 <Select
                                                     onValueChange={(value) => {
@@ -274,9 +275,10 @@ export function ChartCreateSideBar({
                                                         ))}
                                                     </SelectContent>
                                                 </Select>
-                                            </div>
+                                            </div> */}
+                                            <ChartSelector setFieldValue={setFieldValue} values={values} />
                                             <div className="flex flex-col mb-4">
-                                                <Label htmlFor="xAxisData">
+                                                <Label htmlFor="xAxisData" className='text-xs uppercase text-muted-foreground'>
                                                     {values.key === 'correlation'
                                                         ? 'Select Numeric Columns'
                                                         : 'X-Axis'}
@@ -298,7 +300,7 @@ export function ChartCreateSideBar({
                                             </div>
                                             {values.key !== 'correlation' && (
                                                 <div className="flex flex-col">
-                                                    <Label htmlFor="yAxisData">Y-Axis</Label>
+                                                    <Label htmlFor="yAxisData" className='text-xs uppercase text-muted-foreground'>Y-Axis</Label>
                                                     <MultiSelector
                                                         options={columnDetails
                                                             ?.filter((c) => c.type === 'number')
@@ -315,7 +317,7 @@ export function ChartCreateSideBar({
                                             {ChartsList?.filter((chart) => values.key === chart.key)?.map(
                                                 (chart) => (
                                                     <div className="w-full mt-4" key={chart.id}>
-                                                        <Label htmlFor="option">Plot Options</Label>
+                                                        <Label htmlFor="option" className='text-xs uppercase text-muted-foreground'>Plot Options</Label>
                                                         <Select
                                                             onValueChange={(value) => {
                                                                 setFieldValue('option', value);
@@ -379,7 +381,7 @@ export function ChartCreateSideBar({
                                                 ),
                                             )}
                                             <div className="flex flex-col gap-2 mt-4">
-                                                <Label htmlFor="comment">Comments (optional)</Label>
+                                                <Label htmlFor="comment" className='text-xs uppercase text-muted-foreground'>Comments (optional)</Label>
                                                 <Field
                                                     as={Textarea}
                                                     id="comment"
