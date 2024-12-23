@@ -49,7 +49,7 @@ export default function VisualizationHubComponent() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {loadingDatasets ? (
                             Array.from({ length: 6 }).map((_, index) => (
-                                <Card key={index} className="overflow-hidden h-[200px]">
+                                <Card key={index} className="overflow-hidden h-[200px] shadow-none">
                                     <CardContent className="p-0 h-full">
                                         <Skeleton className="w-full h-full" />
                                     </CardContent>
@@ -57,7 +57,7 @@ export default function VisualizationHubComponent() {
                             ))
                         ) : (
                             datasetsData?.map((data: any) => (
-                                <Card key={data?.id} className="overflow-hidden h-[200px]">
+                                <Card key={data?.id} className="overflow-hidden h-[200px] shadow-none">
                                     <CardContent className="p-0 h-[150px] relative">
                                         <div className="w-full h-full overflow-hidden">
                                             <iframe
