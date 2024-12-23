@@ -17,11 +17,11 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-4">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+            <a href="https://github.com/ultroxium/DataXpert" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
               <Github size={20} />
               <span className="sr-only">GitHub</span>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+            <a href="https://x.com/ultroxium" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
               <Twitter size={20} />
               <span className="sr-only">Twitter</span>
             </a>

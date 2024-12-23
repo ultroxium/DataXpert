@@ -1,5 +1,4 @@
 'use client';
-import MaxWidthWrapper from '@/components/max-width-wrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -16,7 +15,7 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 import React from 'react';
 import { toast } from 'sonner';
-import useAuthStore from '@/store/auth/AuthStore';
+import useAuthStore from '@/store/auth';
 import { useRouter } from 'next/navigation';
 
 const EmailSchema = Yup.object().shape({
@@ -28,7 +27,7 @@ const PasswordReset = () => {
   const { passwordResetRequest, isLoading, isSuccess }: any = useAuthStore();
   return (
     <div className="h-screen w-screen flex items-center">
-      <MaxWidthWrapper className="flex items-center justify-center flex-col gap-5">
+      <div className="flex items-center justify-center flex-col gap-5">
         <Link href="/" className="max-w-sm flex z-40 font-semibold gap-2">
           <div className="bg-[url('/light_logo.png')] dark:bg-[url('/dark_logo.png')] bg-cover bg-center h-[24px] w-[24px]"></div>
           DataXpert
@@ -93,7 +92,7 @@ const PasswordReset = () => {
             </Link>
           </CardFooter>
         </Card>
-      </MaxWidthWrapper>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import { Suspense } from 'react';
 import { cn, constructMetadata } from '@/lib/metadata';
-import LayoutProvider from '@/components/common/layout-provider';
+import LayoutProvider from '@/providers/layout-provider';
 import Spinner from '@/components/common/spinner';
 
 const roboto = Roboto({

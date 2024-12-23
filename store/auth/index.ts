@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'sonner';
-import create from 'zustand';
+import { create } from 'zustand';
 import { ApiRoutes } from '@/config/api-routes';
 import { request } from '@/config/api-config';
 
@@ -12,16 +12,24 @@ interface AuthState {
   token: null | string;
   isLoading: boolean;
   isSuccess: boolean;
-
   isAccountDeleting?: boolean;
   isAccountDeleted?: boolean;
+  
+  login: (username: string, password: string) => Promise<boolean>;
+  signup: (name: string, email: string) => Promise<boolean>;
+  verify: (email: string, otp: string) => Promise<boolean>;
+  setPassword: (email: string, password: string) => Promise<boolean>;
+  passwordResetRequest: (email: string) => Promise<boolean>;
+  passwordReset: (key: string, password: string) => Promise<boolean>;
+  deleteAccount: (password: string) => Promise<boolean>;
 }
 
-const useAuthStore = create<AuthState>((set, get) => ({
+const useAuthStore = create<AuthState>()((set) => ({
   isLoggedIn: false,
   token: null,
   isLoading: false,
   isSuccess: false,
+
   login: async (username: string, password: string) => {
     set({ isLoading: true, isSuccess: false });
     const formData = new FormData();

@@ -1,5 +1,4 @@
 'use client';
-import MaxWidthWrapper from '@/components/max-width-wrapper';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -17,9 +16,9 @@ import Link from 'next/link';
 import React, { Suspense, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import useAuthStore from '@/store/auth/AuthStore';
-import Loader from '@/components/Loader';
+import useAuthStore from '@/store/auth';
 import { Eye, EyeOff } from 'lucide-react';
+import Spinner from '@/components/common/spinner';
 
 const SignupSchema = Yup.object().shape({
   password: Yup.string()
@@ -63,7 +62,7 @@ const PasswordReset = () => {
 
   return (
     <div className="h-screen w-screen flex items-center">
-      <MaxWidthWrapper className="flex items-center justify-center flex-col gap-5">
+      <div className="flex items-center justify-center flex-col gap-5">
         <Link href="/" className="max-w-sm flex z-40 font-semibold gap-2">
           <div className="bg-[url('/light_logo.png')] dark:bg-[url('/dark_logo.png')] bg-cover bg-center h-[24px] w-[24px]"></div>
           DataXpert
@@ -171,14 +170,14 @@ const PasswordReset = () => {
             </Link>
           </CardFooter>
         </Card>
-      </MaxWidthWrapper>
+      </div>
     </div>
   );
 };
 
 const PasswordResetPage = () => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Spinner />}>
       <PasswordReset />
     </Suspense>
   );

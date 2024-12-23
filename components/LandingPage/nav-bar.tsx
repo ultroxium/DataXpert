@@ -24,7 +24,7 @@ export default function Navbar() {
               <Logo />
             </Link>
             <div className="flex items-center space-x-4">
-              <Link href={'https://github.com/yourusername/MarkV'} target="_blank">
+              <Link href={'https://github.com/ultroxium/DataXpert'} target="_blank">
                 <Button variant="ghost" size="icon" className="text-foreground">
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
