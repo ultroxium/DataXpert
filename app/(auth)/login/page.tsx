@@ -89,7 +89,7 @@ const LoginPage =() => {
                   onClick={handleGithubAuth}
                 >
                   <Github size={16} className='mr-2'/>
-                  Login with Google
+                  Login with Github
                 </Button>
 
                 
