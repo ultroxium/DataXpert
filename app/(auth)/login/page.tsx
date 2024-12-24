@@ -36,7 +36,7 @@ const LoginPage =() => {
     const token = searchParams.get('token');
     if (token) {
       Cookies.set('token', token, { expires: 7 });
-      router.push('/workspaces');
+      router.push('/dashboard');
     }
   }, [searchParams, router]);
 
@@ -65,7 +65,7 @@ const LoginPage =() => {
             validationSchema={LoginSchema}
             onSubmit={async (values) => {
               const success = await login(values.email, values.password);
-              if (success) router.push('/workspaces');
+              if (success) router.push('/dashboard');
             }}
           >
             {({ isSubmitting }) => (
