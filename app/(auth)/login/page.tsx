@@ -17,7 +17,7 @@ import { Label } from '@/components/ui/label';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Github } from 'lucide-react';
 import Logo from '@/components/logo';
 import useAuthStore from '@/store/auth';
 
@@ -43,6 +43,10 @@ const LoginPage =() => {
   const handleGoogleAuth = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
   };
+
+  const handleGithubAuth=()=>{
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/github`;
+  }
 
   return (
     <div className="h-screen flex items-center justify-center">
@@ -77,6 +81,18 @@ const LoginPage =() => {
                   </svg>
                   Login with Google
                 </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleGithubAuth}
+                >
+                  <Github size={16} className='mr-2'/>
+                  Login with Google
+                </Button>
+
+                
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t" />
