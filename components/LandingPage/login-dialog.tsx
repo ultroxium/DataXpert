@@ -7,8 +7,26 @@ import Link from "next/link";
 import Logo from "../logo";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import Cookies from 'js-cookie';
+
 
 export default function LoginPopover() {
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const token = searchParams.get('token');
+    if (token) {
+      Cookies.set('token', token, { expires: 7 });
+      router.push('/dashboard');
+    }
+  }, [searchParams, router]);
+
+
   const handleGoogleAuth = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
   };
