@@ -24,12 +24,6 @@ export const Hero = () => {
               Data<span className='text-primary'>Xpert</span>
             </span>
           </div>
-          <div className="space-x-4">
-            <Link href="/login">
-              <Button className="px-8 py-2 rounded-full ">Get started</Button>
-            </Link>
-          </div>
-
         </div>
       </div>
     </section>

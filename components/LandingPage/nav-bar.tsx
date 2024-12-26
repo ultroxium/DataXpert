@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Logo from '../logo';
+import LoginPopover from './login-dialog';
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -41,11 +42,7 @@ export default function Navbar() {
                   <span className="sr-only">Toggle theme</span>
                 </Button>
               )}
-              <Link href="/login">
-                <Button variant="default">
-                  Get Started
-                </Button>
-              </Link>
+              <LoginPopover/>
             </div>
           </div>
         </div>
