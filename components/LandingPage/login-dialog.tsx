@@ -7,9 +7,8 @@ import Link from "next/link";
 import Logo from "../logo";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from 'js-cookie';
 
 
