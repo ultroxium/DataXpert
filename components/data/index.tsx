@@ -6,6 +6,7 @@ import SearchParam from '@/lib/search-param';
 import { ColumnDetails } from './column-details';
 import { ColumnInsights } from './insights';
 import { ChartsData } from './visualize/ChartsData';
+import ChatPage from './assistant';
 
 const DatasetVisualization = lazy(() => import('./overview'));
 const DataVisualizePage = lazy(() => import('./visualize'));
@@ -37,6 +38,12 @@ export default function Main({
           <ColumnDetails workspaceId={workspaceId} datasetId={datasetId} isProcessed="false" />
           <ChartsData workspaceId={workspaceId} datasetId={datasetId} />
           <DataVisualizePage workspaceId={workspaceId} datasetId={datasetId} />
+        </>
+      )}
+
+      {tab === "assistant" && (
+        <>
+          <ChatPage workspaceId={workspaceId} datasetId={datasetId} />
         </>
       )}
 
