@@ -153,7 +153,7 @@ const ChatSkeleton = () => (
 );
 
 const ChatMessage = ({ item, me }) => (
-    <div className="flex items-start gap-4 mb-4">
+    <div className="flex items-start gap-4 mb-4 justify-start">
         {item?.speaker === me?.name ? (
             <>
                 <Avatar className="h-10 w-10">
@@ -170,7 +170,9 @@ const ChatMessage = ({ item, me }) => (
                 <div className="bg-gradient-to-br from-primary to-primary-foreground h-10 w-10 flex items-center justify-center rounded-full shadow-md">
                     <BetweenVerticalEnd size={20} className='text-white' />
                 </div>
-                <div className="flex flex-col flex-1">
+                <div className="flex flex-col flex-1 overflow-auto" style={{
+                    scrollbarWidth: "none",
+                }}>
                     <span className="font-semibold text-sm text-primary">Assistant</span>
                     <div className="text-sm bg-secondary/20 border rounded-lg p-3 mt-1 shadow-sm w-fit">
                         {typeof item.message === 'string' ? (
