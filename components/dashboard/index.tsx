@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { WorkspaceSidebar } from './side-bar';
 import Topbar from '../common/top-bar';
+import Link from 'next/link';
 
 const DashboardComponent = ({
   workspacesData,
@@ -111,34 +112,34 @@ const DashboardComponent = ({
             <SortBy handleSort={handleSort} />
           </div>
 
-         <div className='py-4 bg-white rounded-t-lg dark:bg-gray-800/10 min-h-96'>
-         {loadingDatasets ? (
-            <div className="space-y-4 px-4">
-              {[...Array(5)].map((_, index) => (
-                <Skeleton key={index} className="h-16 w-full" />
-              ))}
-            </div>
-          ) : sortedDatasets?.length > 0 ? (
-            <DatasetTable datasets={sortedDatasets} widNo={widNo} FilteredWorkspaces={FilteredWorkspaces} deleteDatasetMutation={deleteDatasetMutation} moveDatasetMutation={moveDatasetMutation} />
-          ) : (
-            <EmptyState />
-          )}
-         </div>
+          <div className='py-4'>
+            {loadingDatasets ? (
+              <div className="space-y-4 px-4">
+                {[...Array(5)].map((_, index) => (
+                  <Skeleton key={index} className="h-16 w-full" />
+                ))}
+              </div>
+            ) : sortedDatasets?.length > 0 ? (
+              <DatasetTable datasets={sortedDatasets} widNo={widNo} FilteredWorkspaces={FilteredWorkspaces} deleteDatasetMutation={deleteDatasetMutation} moveDatasetMutation={moveDatasetMutation} />
+            ) : (
+              <EmptyState />
+            )}
+          </div>
         </div>
       </div>
     </main>
   );
 };
 
-const FeatureButton = ({ icon, label, color,router,widNo }) => (
-  <Button variant="ghost" className="w-40 h-24 py-4 flex flex-col items-center justify-center gap-2" onClick={()=>{
+const FeatureButton = ({ icon, label, color, router, widNo }) => (
+  <Button variant="ghost" className="w-40 h-24 py-4 flex flex-col items-center justify-center gap-2" onClick={() => {
     router.push(`/visualization-hub?wid=${widNo}`)
   }}>
-        <span className={`w-8 h-8 rounded-full ${color} flex items-center justify-center`}>
-          {icon}
-        </span>
-        <span className='text-muted-foreground font-semibold text-xs'>{label}</span>
-      </Button>
+    <span className={`w-8 h-8 rounded-full ${color} flex items-center justify-center`}>
+      {icon}
+    </span>
+    <span className='text-muted-foreground font-semibold text-xs'>{label}</span>
+  </Button>
 );
 
 const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
@@ -155,10 +156,11 @@ const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutati
       {datasets.map((file: any, index: number) => (
         <TableRow key={index}>
           <TableCell className="font-medium">
-            <div className="flex items-center">
-              <FileSpreadsheet className="mr-2 h-4 w-4 text-muted-foreground" />
-              {file.name}
-            </div>
+            <Link href={`/${file?.workspace_id}/${file?.id}?tab="overview"`} className='underline underline-offset-2 text-muted-foreground'>
+              <div className="flex items-center">
+                <FileSpreadsheet className="mr-2 h-4 w-4 text-muted-foreground" />
+                {file.name}
+              </div></Link>
           </TableCell>
           <TableCell>{file?.updated_at && moment(file.updated_at).isValid() ? moment(file?.updated_at).fromNow() : ''}</TableCell>
           <TableCell>{moment(file?.created_at).fromNow()}</TableCell>

@@ -29,14 +29,16 @@ export function WorkspaceSidebar({
     workspaceName,
 }: any) {
     return (
-        <Sidebar className='border-none bg-primary/5 '>
+        <Sidebar className='border-none'>
             <SidebarHeader className="px-4 h-16 flex items-start justify-center">
                 <Link href="/">
                     <Logo />
                 </Link>
             </SidebarHeader>
-            <SidebarContent className="py-4">
-                <SidebarMenu className="space-y-4">
+            <SidebarContent className="bg-primary/5 rounded-tr-3xl" style={{
+                scrollbarWidth: "none"
+            }}>
+                <SidebarMenu className="space-y-4 py-8">
                     <SidebarMenuItem className="px-4">
                         <WorkspaceSwitcher
                             loadingWorkspaces={loadingWorkspaces}
@@ -56,7 +58,7 @@ export function WorkspaceSidebar({
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarContent>
-            <SidebarFooter className="border-t p-4">
+            <SidebarFooter className="bg-primary/5 rounded-br-3xl border-t p-4">
                 <div className='flex items-center gap-4'>
                     <Avatar className="border h-9 w-9 cursor-pointer rounded-lg">
                         <AvatarImage src={me?.picture} alt={me?.name} className='rounded-lg' />
