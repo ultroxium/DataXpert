@@ -156,7 +156,7 @@ const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutati
       {datasets.map((file: any, index: number) => (
         <TableRow key={index}>
           <TableCell className="font-medium">
-            <Link href={`/${file?.workspace_id}/${file?.id}?tab="overview"`} className='underline underline-offset-2 text-muted-foreground'>
+            <Link href={`/datasets/${file?.workspace_id}/${file?.id}?tab=overview`} className='underline underline-offset-2 text-muted-foreground'>
               <div className="flex items-center">
                 <FileSpreadsheet className="mr-2 h-4 w-4 text-muted-foreground" />
                 {file.name}
