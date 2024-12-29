@@ -64,9 +64,8 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
       <PreviewPageSideBar />
       <section className='flex-1 overflow-auto space-y-4 flex flex-col min-h-[500px]'>
         <Topbar title='Data Overview'/>
-        <div className="px-4 flex flex-col  overflow-x-hidden">
+        <div className="flex flex-col overflow-x-hidden">
           
-
           {/* <div className='w-full flex flex-row items-center justif-start py-4 gap-4' onClick={() => {
             router.push(`?tab=assistant`)
           }}>

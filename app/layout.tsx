@@ -1,4 +1,4 @@
-import { Roboto  } from 'next/font/google';
+import { Poppins  } from 'next/font/google';
 import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import { Suspense } from 'react';
@@ -6,7 +6,7 @@ import { cn, constructMetadata } from '@/lib/metadata';
 import LayoutProvider from '@/providers/layout-provider';
 import Spinner from '@/components/common/spinner';
 
-const roboto = Roboto({
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['100', '300', '400', '500', '700', '900'],
 });
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${roboto.className}`}>
+      <body className={`${poppins.className}`}>
         <Suspense fallback={<Spinner />}>
           <LayoutProvider>{children}</LayoutProvider>
         </Suspense>

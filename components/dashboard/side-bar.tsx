@@ -5,12 +5,6 @@ import {
     AvatarFallback,
     AvatarImage,
 } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import {
     Sidebar,
     SidebarContent,
@@ -23,8 +17,6 @@ import {
 import UploadDatasetDialog from './uploadDataDialogue'
 import Logo from '../logo'
 import WorkspaceSwitcher from './workspace-form'
-import { CustomTooltip } from '../common/custom-tooltip'
-import { LinkShare } from './ShareLink'
 
 export function WorkspaceSidebar({
     loadingWorkspaces,
@@ -37,7 +29,7 @@ export function WorkspaceSidebar({
     workspaceName,
 }: any) {
     return (
-        <Sidebar>
+        <Sidebar className='border-none bg-primary/5 '>
             <SidebarHeader className="px-4 h-16 flex items-start justify-center">
                 <Link href="/">
                     <Logo />
@@ -54,35 +46,6 @@ export function WorkspaceSidebar({
                             workspaceData={workspaceData}
                         />
                     </SidebarMenuItem>
-
-                    {workspaceData?.name !== 'Default Workspace' && (
-                        <SidebarMenuItem className="px-4">
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    {workspaceData?.teams[0]?.members.length > 1 ? (
-                                        <div className="flex -space-x-2 overflow-hidden cursor-pointer">
-                                            {workspaceData?.teams[0]?.members.map((member: any, index: number) => (
-                                                <CustomTooltip title={member?.user_obj?.name} key={index}>
-                                                    <Avatar className="w-8 h-8 border-2 border-white rounded-full">
-                                                        <AvatarImage src={member?.user_obj?.picture} alt={member?.user_obj?.name} />
-                                                        <AvatarFallback>{member?.user_obj?.name.charAt(0).toUpperCase()}</AvatarFallback>
-                                                    </Avatar>
-                                                </CustomTooltip>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <Button variant="outline" size="sm">
-                                            <UserPlus className="w-4 h-4 mr-2" />
-                                            Invite
-                                        </Button>
-                                    )}
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="start" side='right'>
-                                    <LinkShare data={workspaceData} />
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </SidebarMenuItem>
-                    )}
 
                     <SidebarMenuItem className="px-4">
                         <div className='h-32'>

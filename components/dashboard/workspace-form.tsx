@@ -16,7 +16,7 @@ import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { usePlan } from '@/hooks/use-plan';
 import { cn } from '@/lib/utils';
-import { CarrotIcon, CheckIcon, PlusCircleIcon } from 'lucide-react';
+import { CheckIcon, PlusCircleIcon, ChevronDown } from 'lucide-react';
 import { Gem, Loader2 } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import * as React from 'react';
@@ -93,7 +93,7 @@ const WorkspaceSwitcher = ({
               <AvatarFallback>{workspaceData?.name?.charAt(0).toUpperCase()}</AvatarFallback>
             </Avatar>
             {loadingWorkspace ? 'Loading ...' : workspaceData?.name}
-            <CarrotIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+            <ChevronDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full min-w-[250px] p-0" align="start">
@@ -189,7 +189,6 @@ const WorkspaceSwitcher = ({
                     }}>
                     <PlusCircleIcon className="mr-2 h-5 w-5" />
                     Create Workspace
-                    {plan?.id === 1 && <Gem size={14} className="text-yellow-400 ml-2" />}
                   </CommandItem>
                 </DialogTrigger>
               </CommandGroup>

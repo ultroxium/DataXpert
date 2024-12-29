@@ -51,7 +51,7 @@ const DataVisualizePage = ({
         <div className="w-full h-full">
           <Topbar layout="dataset" title='Data Visualization' workspaceId={workspaceId} datasetId={datasetId} />
           <div className="w-full p-4 flex items-center justify-start gap-4">
-            <div className="relative flex items-center w-full">
+            <div className="relative flex items-center ">
               <Search size={16} className="absolute left-3" />
               <input
                 type="text"

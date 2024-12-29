@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Settings, UserPlus } from 'lucide-react'
+import { ArrowRight, ChartArea, Cpu, House, MessageSquare, Settings, Sparkles, UserPlus } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -21,29 +21,74 @@ import {
 } from '@/components/ui/sidebar'
 import Logo from '@/components/logo'
 import { useRouter } from 'next/navigation'
+import { title } from 'process'
+import SearchParam from '@/lib/search-param'
+
+const SideBarItems = [
+    {
+        id: 1,
+        title: 'Overview',
+        tab: 'overview',
+        icon: House,
+    },
+    {
+        id: 2,
+        title: 'Chat with AI',
+        tab: 'assistant',
+        icon: MessageSquare,
+    },
+    {
+        id: 3,
+        title: 'Visualize data',
+        tab: 'visualize',
+        icon: ChartArea,
+    },
+    {
+        id: 4,
+        title: 'PreProcess & Train',
+        tab: 'preprocess',
+        icon: Cpu,
+    },
+    {
+        id: 5,
+        title: 'Make Prediction',
+        tab: 'predict',
+        icon: Sparkles,
+    }
+]
 
 export function PreviewPageSideBar() {
     const router = useRouter();
+    const tab = SearchParam('tab')
+
     return (
-        <Sidebar>
-            <SidebarHeader className="px-4 h-16 flex items-start justify-center">
+        <Sidebar className='border-none px-4'>
+            <SidebarHeader className="h-16 flex items-start justify-center">
                 <Link href="/">
                     <Logo />
                 </Link>
             </SidebarHeader>
-            <SidebarContent className="py-4">
-                <SidebarMenu className="space-y-4">
-                    <SidebarMenuItem className="px-4">
-                        <div className='w-full py-4 bg-gradient-to-r from-yellow-400 to-orange-600 rounded-lg flex items-center gap-4 px-4'>
-                            <div className='flex flex-col'>
-                                <span className='text-36 font-bold text-secondary dark:text-white'>Want to create own Dashboard?</span>
-                                <Button variant='secondary' onClick={() => {
-                                    router.push(`?tab=visualize`)
-                                }} className='w-fit flex items-center group bg-primary/50 rounded-full px-8 text-white'>Try Now <ArrowRight size={16} className='group-hover:translate-x-2 transition-all duration-300' /> </Button>
-                            </div>
-                        </div>
-
-                    </SidebarMenuItem>
+            <SidebarContent className="bg-primary/5 rounded-r-3xl">
+                <SidebarMenu className="space-y-2 py-8">
+                    {SideBarItems.map((item) => (
+                        <SidebarMenuItem key={item.id} className="px-4" onClick={() => {
+                            router.push(`?tab=${item.tab}`)
+                        }}>
+                            <span className={`
+        flex items-center gap-4 py-2 px-4 rounded-lg
+        transition-all duration-200
+        hover:bg-gradient-to-r hover:from-rose-600/90 hover:to-rose-500/20 hover:text-white
+        ${item?.tab === tab ?
+                                    "bg-gradient-to-r from-rose-600 to-rose-500/20 text-white" :
+                                    "text-gray-500"
+                                }
+        cursor-pointer
+      `}>
+                                <item.icon size={20} />
+                                <span className='text-16 font-[500]'>{item.title}</span>
+                            </span>
+                        </SidebarMenuItem>
+                    ))}
                 </SidebarMenu>
             </SidebarContent>
             {/* <SidebarFooter className="border-t p-4">

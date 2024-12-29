@@ -81,7 +81,7 @@ const PreviewCharts: React.FC<ChartPreviewProps> = ({ chartsData, columnDetails,
             {chartsData?.map((item: any, index) => {
               const ChartComponent = componentMap.get(item.key);
               return (
-                <Card key={index} className="w-full h-full flex flex-col items-center justify-center border-none shadow-none">
+                <Card key={index} className="w-full h-full flex flex-col items-center justify-center border-none shadow-none bg-white/60 dark:bg-background">
                   <CardHeader className="w-full flex flex-row items-center justify-between py-2 max-h-12">
                     {editLabel === item?.id ? (
                       <Input

@@ -18,10 +18,10 @@ export default function Home() {
     <div className="">
       <Navbar />
       <Hero />
-      <Features />
+      {/* <Features />
       <ReviewMarquee />
-      <Faqs />
-      <GetStarted />
+      <GetStarted /> */}
+      {/* <Faqs /> */}
       <Footer />
     </div>
   );

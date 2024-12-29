@@ -5,7 +5,7 @@ import Logo from '../logo'
 export default function Footer() {
   return (
     <footer className="bg-background border-t">
-      <div className="max-w-[75vw] mx-auto py-8">
+      <div className="container mx-auto py-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-2xl font-bold">
@@ -16,7 +16,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex space-x-4">
+          <div className="flex space-x-6">
             <a href="https://github.com/ultroxium/DataXpert" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
               <Github size={20} />
               <span className="sr-only">GitHub</span>

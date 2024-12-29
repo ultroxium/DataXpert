@@ -91,11 +91,11 @@ const DashboardComponent = ({
         workspaceName={workspaceName}
       />
       <div className='flex-1 overflow-auto space-y-4 flex flex-col'>
-        <Topbar title='Dashboard' />
+        <Topbar title='Dashboard' workspaceData={workspaceData} />
         <div className="px-4 space-y-6">
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <FeatureButton icon={<LineChart size={16} className='text-white' />} label="Visualization Hub" color="bg-rose-600" router={router} widNo={widNo}/>
-          </div>
+          </div> */}
 
           <div className="flex justify-between items-center">
             <div className="relative">
@@ -111,9 +111,9 @@ const DashboardComponent = ({
             <SortBy handleSort={handleSort} />
           </div>
 
-         <div className='p-4 bg-white rounded-t-lg dark:bg-gray-800/10'>
+         <div className='py-4 bg-white rounded-t-lg dark:bg-gray-800/10 min-h-96'>
          {loadingDatasets ? (
-            <div className="space-y-4">
+            <div className="space-y-4 px-4">
               {[...Array(5)].map((_, index) => (
                 <Skeleton key={index} className="h-16 w-full" />
               ))}

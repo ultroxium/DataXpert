@@ -15,10 +15,10 @@ const ScatterPlot: React.FC<ScatterPlotChartProps> = ({ data, xLabel, yLabel, pl
       trigger: 'axis',
     },
     grid: {
-      left: '20%',
-      right: '20%',
-      bottom: '20%',
-      top: '20%',
+      // left: '20%',
+      // right: '20%',
+      // bottom: '20%',
+      // top: '20%',
       containLabel: true,
     },
     toolbox: {
