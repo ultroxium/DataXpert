@@ -7,6 +7,7 @@ import { ColumnDetails } from './column-details';
 import { ColumnInsights } from './insights';
 import { ChartsData } from './visualize/ChartsData';
 import ChatPage from './assistant';
+import NotFound from '../not-found';
 
 const DatasetVisualization = lazy(() => import('./overview'));
 const DataVisualizePage = lazy(() => import('./visualize'));
@@ -46,6 +47,20 @@ export default function Main({
           <ChatPage workspaceId={workspaceId} datasetId={datasetId} />
         </>
       )}
+
+      {
+        tab === "preprocess" && (
+          <>
+            <NotFound />
+          </>)
+      }
+
+      {
+        tab === "predict" && (
+          <>
+            <NotFound />
+          </>)
+      }
 
       {!tab && (
         <div className="flex justify-center items-center h-full">
