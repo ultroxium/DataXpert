@@ -10,6 +10,7 @@ import { Maximize2 } from 'lucide-react';
 import React, { Suspense, useState } from 'react';
 import ChartActions from './chart-action';
 import { ChartsList } from '@/config/chart';
+import { useChartConfigHook } from '@/hooks/use-chart-config';
 
 interface ChartPreviewProps {
   chartsData: any[];
@@ -22,6 +23,7 @@ const componentMap = new Map(ChartsList.map(({ key, component }) => [key, compon
 
 const PreviewCharts: React.FC<ChartPreviewProps> = ({ chartsData, columnDetails, workspaceId, datasetId }) => {
   const queryClient = useQueryClient();
+  const { gridOn,borderOn,shadowOn } = useChartConfigHook();
 
   const [editLabel, setEditLabel] = useState(0);
   const [chartName, setChartName] = useState('');
@@ -81,7 +83,7 @@ const PreviewCharts: React.FC<ChartPreviewProps> = ({ chartsData, columnDetails,
             {chartsData?.map((item: any, index) => {
               const ChartComponent = componentMap.get(item.key);
               return (
-                <Card key={index} className="w-full h-full flex flex-col items-center justify-center border-none shadow-none bg-white/60 dark:bg-background">
+                <Card key={index} className={`w-full h-full flex flex-col items-center justify-center ${borderOn ? 'border':'border-none'} ${shadowOn ? 'shadow':'shadow-none'} bg-background`}>
                   <CardHeader className="w-full flex flex-row items-center justify-between py-2 max-h-12">
                     {editLabel === item?.id ? (
                       <Input

@@ -25,7 +25,7 @@ interface TopbarProps {
 const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId, workspaceData }: TopbarProps) => {
 
   return (
-    <div className="h-16">
+    <div className="h-16 border-b">
       <div className="h-full flex w-full items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Button variant={'outline'} size={'icon'} className='rounded-full'>

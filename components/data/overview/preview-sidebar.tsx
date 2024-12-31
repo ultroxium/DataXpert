@@ -62,13 +62,13 @@ export function PreviewPageSideBar() {
     const tab = SearchParam('tab')
 
     return (
-        <Sidebar className='border-none px-4'>
-            <SidebarHeader className="h-16 flex items-start justify-center">
+        <Sidebar>
+            <SidebarHeader className="h-16 flex items-start justify-center px-4">
                 <Link href="/">
                     <Logo />
                 </Link>
             </SidebarHeader>
-            <SidebarContent className="bg-primary/5 rounded-r-3xl">
+            <SidebarContent className="">
                 <SidebarMenu className="space-y-2 py-8">
                     {SideBarItems.map((item) => (
                         <SidebarMenuItem key={item.id} className="px-4" onClick={() => {

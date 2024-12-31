@@ -106,13 +106,13 @@ export function ChartCreateSideBar({
     };
 
     return (
-        <Sidebar className='border-none'>
+        <Sidebar>
             <SidebarHeader className="px-4 h-16 flex items-start justify-center">
                 <Link href="/">
                     <Logo />
                 </Link>
             </SidebarHeader>
-            <SidebarContent className="bg-primary/5 rounded-r-3xl px-4" style={{
+            <SidebarContent className="px-4" style={{
                 scrollbarWidth: "none"
             }}>
                 <SidebarMenu className="space-y-2 py-8">
