@@ -15,6 +15,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { WorkspaceSidebar } from './side-bar';
 import Topbar from '../common/top-bar';
 import Link from 'next/link';
+import CSVUploader from './upload-csv';
 
 const DashboardComponent = ({
   workspacesData,
@@ -81,7 +82,7 @@ const DashboardComponent = ({
 
   return (
     <main className="flex h-screen bg-background">
-      <WorkspaceSidebar
+      {/* <WorkspaceSidebar
         loadingWorkspaces={loadingWorkspaces}
         loadingWorkspace={loadingWorkspace}
         workspacesData={workspacesData}
@@ -90,14 +91,14 @@ const DashboardComponent = ({
         me={me}
         widNo={widNo}
         workspaceName={workspaceName}
-      />
+      /> */}
       <div className='flex-1 overflow-auto space-y-4 flex flex-col'>
         <Topbar title='Dashboard' workspaceData={workspaceData} />
-        <div className="px-4 space-y-6">
-          {/* <div className="flex gap-4">
-            <FeatureButton icon={<LineChart size={16} className='text-white' />} label="Visualization Hub" color="bg-rose-600" router={router} widNo={widNo}/>
-          </div> */}
+        <div className="space-y-8 w-[60rem] mx-auto pt-8">
+          <div className='h-44 w-full rounded-lg'>
+            <CSVUploader wid={widNo.toString()}/>
 
+          </div>
           <div className="flex justify-between items-center">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
@@ -111,12 +112,11 @@ const DashboardComponent = ({
             </div>
             <SortBy handleSort={handleSort} />
           </div>
-
-          <div className='py-4'>
+          <div>
             {loadingDatasets ? (
-              <div className="space-y-4 px-4">
+              <div className="space-y-2">
                 {[...Array(5)].map((_, index) => (
-                  <Skeleton key={index} className="h-16 w-full" />
+                  <Skeleton key={index} className="h-12 w-full" />
                 ))}
               </div>
             ) : sortedDatasets?.length > 0 ? (
@@ -131,40 +131,41 @@ const DashboardComponent = ({
   );
 };
 
-const FeatureButton = ({ icon, label, color, router, widNo }) => (
-  <Button variant="ghost" className="w-40 h-24 py-4 flex flex-col items-center justify-center gap-2" onClick={() => {
-    router.push(`/visualization-hub?wid=${widNo}`)
-  }}>
-    <span className={`w-8 h-8 rounded-full ${color} flex items-center justify-center`}>
-      {icon}
-    </span>
-    <span className='text-muted-foreground font-semibold text-xs'>{label}</span>
-  </Button>
-);
-
 const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
-  <Table>
+  <div className="w-full overflow-auto">
+  <Table className="border border-border rounded-lg overflow-hidden">
     <TableHeader>
-      <TableRow>
-        <TableHead>Dataset</TableHead>
-        <TableHead>Last Modified</TableHead>
-        <TableHead>Created</TableHead>
-        <TableHead className="text-right">Actions</TableHead>
+      <TableRow className="bg-muted">
+        <TableHead className="w-[40%] font-semibold">Dataset</TableHead>
+        <TableHead className="w-[20%] font-semibold">Last Modified</TableHead>
+        <TableHead className="w-[20%] font-semibold">Created</TableHead>
+        <TableHead className="text-right font-semibold">Actions</TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
       {datasets.map((file: any, index: number) => (
-        <TableRow key={index}>
-          <TableCell className="font-medium">
-            <Link href={`/datasets/${file?.workspace_id}/${file?.id}?tab=overview`} className='underline underline-offset-2 text-muted-foreground'>
-              <div className="flex items-center">
-                <FileSpreadsheet className="mr-2 h-4 w-4 text-muted-foreground" />
-                {file.name}
-              </div></Link>
+        <TableRow 
+          key={file.id}
+          className={index % 2 === 0 ? 'bg-muted/30' : 'bg-muted/50'}
+        >
+          <TableCell className="font-medium border-t border-border">
+            <Link 
+              href={`/datasets/${file.workspace_id}/${file.id}?tab=overview`}
+              className="flex items-center text-primary hover:underline"
+            >
+              <FileSpreadsheet className="mr-2 h-4 w-4" />
+              <span>{file.name}</span>
+            </Link>
           </TableCell>
-          <TableCell>{file?.updated_at && moment(file.updated_at).isValid() ? moment(file?.updated_at).fromNow() : ''}</TableCell>
-          <TableCell>{moment(file?.created_at).fromNow()}</TableCell>
-          <TableCell className="text-right">
+          <TableCell className="text-muted-foreground border-t border-border">
+            {file.updated_at && moment(file.updated_at).isValid() 
+              ? moment(file.updated_at).fromNow() 
+              : 'N/A'}
+          </TableCell>
+          <TableCell className="text-muted-foreground border-t border-border">
+            {moment(file.created_at).fromNow()}
+          </TableCell>
+          <TableCell className="text-right border-t border-border">
             <DatasetActions
               dataset={file}
               widNo={widNo}
@@ -177,6 +178,7 @@ const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutati
       ))}
     </TableBody>
   </Table>
+</div>
 );
 
 const EmptyState = () => (

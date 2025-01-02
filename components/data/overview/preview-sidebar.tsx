@@ -1,100 +1,71 @@
+"use client"
 import Link from 'next/link'
-import { ArrowRight, ChartArea, Cpu, House, MessageSquare, Settings, Sparkles, UserPlus } from 'lucide-react'
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarHeader,
-    SidebarMenu,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar'
-import Logo from '@/components/logo'
-import { useRouter } from 'next/navigation'
-import { title } from 'process'
+import { AreaChart, Cpu, Home, MessageSquare, Settings, Sparkles } from 'lucide-react'
 import SearchParam from '@/lib/search-param'
 
-const SideBarItems = [
-    {
-        id: 1,
-        title: 'Overview',
-        tab: 'overview',
-        icon: House,
-    },
-    {
-        id: 2,
-        title: 'Chat with AI',
-        tab: 'assistant',
-        icon: MessageSquare,
-    },
-    {
-        id: 3,
-        title: 'Visualize data',
-        tab: 'visualize',
-        icon: ChartArea,
-    },
-    {
-        id: 4,
-        title: 'PreProcess & Train',
-        tab: 'preprocess',
-        icon: Cpu,
-    },
-    {
-        id: 5,
-        title: 'Make Prediction',
-        tab: 'predict',
-        icon: Sparkles,
-    }
+const sidebarItems = [
+  {
+    title: "Overview",
+    tab: "overview",
+    icon: Home,
+  },
+  {
+    title: "Chat with AI",
+    tab: "assistant",
+    icon: MessageSquare,
+  },
+  {
+    title: "Visualize data",
+    tab: "visualize",
+    icon: AreaChart,
+  },
+  {
+    title: "PreProcess & Train",
+    tab: "preprocess",
+    icon: Cpu,
+  },
+  {
+    title: "Make Prediction",
+    tab: "predict",
+    icon: Sparkles,
+  },
 ]
 
-export function PreviewPageSideBar() {
-    const router = useRouter();
-    const tab = SearchParam('tab')
+const PreviewPageSidebar=()=> {
+  const tab = SearchParam("tab")
 
-    return (
-        <Sidebar>
-            <SidebarHeader className="h-16 flex items-start justify-center px-4">
-                <Link href="/">
-                    <Logo />
-                </Link>
-            </SidebarHeader>
-            <SidebarContent className="">
-                <SidebarMenu className="space-y-2 py-8">
-                    {SideBarItems.map((item) => (
-                        <SidebarMenuItem key={item.id} className="px-4" onClick={() => {
-                            router.push(`?tab=${item.tab}`)
-                        }}>
-                            <span className={`
-        flex items-center gap-4 py-2 px-4 rounded-lg
-        transition-all duration-200
-        hover:bg-gradient-to-r hover:from-rose-600/90 hover:to-rose-500/20 hover:text-white
-        ${item?.tab === tab ?
-                                    "bg-gradient-to-r from-rose-600 to-rose-500/20 text-white" :
-                                    "text-gray-500"
-                                }
-        cursor-pointer
-      `}>
-                                <item.icon size={20} />
-                                <span className='text-16 font-[500]'>{item.title}</span>
-                            </span>
-                        </SidebarMenuItem>
-                    ))}
-                </SidebarMenu>
-            </SidebarContent>
-            {/* <SidebarFooter className="border-t p-4">
-                
-            </SidebarFooter> */}
-        </Sidebar>
-    )
+  return (
+    <aside className="w-64 h-full flex flex-col justify-between">
+      <nav className="flex-grow py-4">
+        <div className="px-4 mb-4">
+          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Menu</h2>
+        </div>
+        <ul className="space-y-2 pr-4">
+          {sidebarItems.map((item) => (
+            <li key={item.tab}>
+              <Link
+                href={`?tab=${item.tab}`}
+                className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out ${
+                  tab === item.tab
+                    ? 'bg-muted '
+                    : ' hover:bg-muted '
+                }`}
+              >
+                <item.icon size={14} className='mr-2'/>
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* version info */}
+        <div className="flex-shrink-0 px-4 py-4 text-xs text-gray-500 border-t">
+            <span className="text-muted-foreground">Version 1.0.0</span>
+        </div>
+      
+    </aside>
+  )
 }
 
+export default PreviewPageSidebar;

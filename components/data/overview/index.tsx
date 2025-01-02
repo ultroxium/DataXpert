@@ -11,7 +11,7 @@ import { Binary, CaseSensitive, BarChart, PieChart, ArrowRight, ArrowRightIcon, 
 import { staticalTerms } from '@/constants/statical-terms';
 import { useRouter } from 'next/navigation';
 import Topbar from '@/components/common/top-bar';
-import { PreviewPageSideBar } from './preview-sidebar';
+import PreviewPageSidebar from './preview-sidebar';
 
 const NullHandler = React.lazy(() => import('@/components/data/null-handler'));
 const ViewDataTable = React.lazy(() => import('./table-data'));
@@ -60,28 +60,14 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
   const graphPlots = columnInsights?.graph_plots || [];
 
   return (
-    <main className='flex'>
-      <PreviewPageSideBar />
-      <section className='flex-1 overflow-auto space-y-4 flex flex-col min-h-[500px]'>
+    <main className='flex flex-col'>
         <Topbar title='Data Overview'/>
-        <div className="flex flex-col overflow-x-hidden px-4">
+      <section className='w-full h-[calc(100vh-4rem)] space-y-4 flex max-h-screen'>
+        <div className='w-[400px] h-full flex items-start justify-end border-r bg-gray-50 dark:bg-muted/30'>
+        <PreviewPageSidebar />
+        </div>
+        <div className="flex-1 flex flex-col overflow-x-hidden px-4 max-w-[60rem]" style={{scrollbarWidth:'none'}}>
           
-          {/* <div className='w-full flex flex-row items-center justif-start py-4 gap-4' onClick={() => {
-            router.push(`?tab=assistant`)
-          }}>
-            <div className='flex items-center gap-2 bg-blue-600/20 py-2 px-6 rounded-full cursor-pointer hover:bg-slate-500/10'>
-              <Bot size={16} className='text-blue-600' />
-              <span>Use assistant to explore data</span>
-            </div>
-
-            <div className='flex items-center gap-2 bg-yellow-600/20 py-2 px-6 rounded-full cursor-pointer hover:bg-slate-500/10'>
-              <ArrowRightIcon size={16} className='text-teal-500' />
-              <span>Make model</span>
-            </div>
-          </div> */}
-
-          {/* <span className='font-bold text-32'>Data Overview</span> */}
-
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 pl-0 items-center border-b">
             {/* Dataset Name */}
             <div className="text-start">
@@ -209,7 +195,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
                 <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
                   {isColumnInsightsLoading
                     ? Array(6).fill(0).map((_, i) => (
-                      <Card key={i} className="flex flex-col p-6 border-none bg-transparent">
+                      <Card key={i} className="flex flex-col p-6 border-none bg-transparent shadow-none">
                         <Skeleton className="h-6 w-28 mb-2" />
                         <Skeleton className="h-8 w-36" />
                       </Card>
@@ -236,6 +222,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
             </CardContent>
           </div>
         </div>
+       
       </section>
     </main>
   );

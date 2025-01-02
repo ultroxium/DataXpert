@@ -135,7 +135,7 @@ const FetchUploader: React.FC<FetchUploaderProps> = ({ wid }) => {
           id="description"
           {...formik.getFieldProps('description')}
           className={
-            formik.touched.description && formik.errors.description ? 'border-destructive' : ''
+            formik.touched.description && formik.errors.description ? 'border-destructive resize-none' : 'resize-none'
           }
         />
         {formik.touched.description && formik.errors.description ? (

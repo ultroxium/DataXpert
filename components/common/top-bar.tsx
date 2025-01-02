@@ -25,12 +25,14 @@ interface TopbarProps {
 const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId, workspaceData }: TopbarProps) => {
 
   return (
-    <div className="h-16 border-b">
+    <div className="h-16 border-b bg-gray-50 dark:bg-muted/30">
       <div className="h-full flex w-full items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Button variant={'outline'} size={'icon'} className='rounded-full'>
+          {/* logo */}
+          <div className="w-36 h-16 bg-[url('/logo.png')] dark:bg-[url('/logo_dark.png')] bg-no-repeat bg-center bg-contain"/>
+          {/* <Button variant={'outline'} size={'icon'} className='rounded-full'>
             <SidebarTrigger />
-          </Button>
+          </Button> */}
           {/* <span className='text-24 font-normal text-muted-foreground'>{title}</span> */}
         </div>
 

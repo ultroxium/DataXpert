@@ -12,6 +12,7 @@ import { useDropzone } from 'react-dropzone';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'sonner';
+import UploadDatasetDialog from './uploadDataDialogue';
 
 interface FormValues {
   name: string;
@@ -98,10 +99,10 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="space-y-4">
+      <form onSubmit={formik.handleSubmit} className="space-y-2">
         <div
           {...getRootProps()}
-          className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+          className={`flex flex-col items-center hover:border-primary justify-center w-full h-24 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
             isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/25'
           }`}>
           <input {...getInputProps()} />
@@ -132,7 +133,7 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
           <p className="text-sm text-muted-foreground">CSV or Excel file</p>
         )}
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium">
             Name
           </label>
@@ -146,9 +147,9 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
           ) : (
             <p className="text-sm text-muted-foreground">Dataset name</p>
           )}
-        </div>
+        </div> */}
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <label htmlFor="description" className="text-sm font-medium">
             Description (optional)
           </label>
@@ -164,9 +165,9 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
           ) : (
             <p className="text-sm text-muted-foreground">Dataset description</p>
           )}
-        </div>
+        </div> */}
 
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-start items-center space-x-4">
           <Button type="submit">
             {addDatasetMutation.isPending ? (
               <div className="flex items-center gap-1">
@@ -176,6 +177,10 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
               'Upload'
             )}
           </Button>
+            <span>
+            or
+            </span>
+            <UploadDatasetDialog wid={wid}/>
         </div>
       </form>
     </>
