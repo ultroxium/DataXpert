@@ -98,11 +98,11 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
   });
 
   return (
-    <>
+    <div className='w-full rounded-lg'>
       <form onSubmit={formik.handleSubmit} className="space-y-2">
         <div
           {...getRootProps()}
-          className={`flex flex-col items-center hover:border-primary justify-center w-full h-24 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
+          className={`flex flex-col items-center hover:border-primary justify-center w-64 p-8 text-center border-2 border-dashed rounded-lg cursor-pointer transition-colors mb-4 ${
             isDragActive ? 'border-primary bg-primary/10' : 'border-muted-foreground/25'
           }`}>
           <input {...getInputProps()} />
@@ -167,7 +167,7 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
           )}
         </div> */}
 
-        <div className="flex justify-start items-center space-x-4">
+        <div className="flex justify-start items-center space-x-4 pt-4">
           <Button type="submit">
             {addDatasetMutation.isPending ? (
               <div className="flex items-center gap-1">
@@ -183,7 +183,7 @@ const CSVUploader = ({ wid }: UploadDatasetDialogProps) => {
             <UploadDatasetDialog wid={wid}/>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

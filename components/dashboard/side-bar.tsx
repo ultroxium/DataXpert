@@ -29,48 +29,19 @@ export function WorkspaceSidebar({
     workspaceName,
 }: any) {
     return (
-        <Sidebar className='border-none'>
-            <SidebarHeader className="px-4 h-16 flex items-start justify-center">
-                <Link href="/">
-                    <Logo />
-                </Link>
-            </SidebarHeader>
-            <SidebarContent className="bg-primary/5 rounded-tr-3xl" style={{
-                scrollbarWidth: "none"
-            }}>
-                <SidebarMenu className="space-y-4 py-8">
-                    <SidebarMenuItem className="px-4">
-                        <WorkspaceSwitcher
-                            loadingWorkspaces={loadingWorkspaces}
-                            loadingWorkspace={loadingWorkspace}
-                            workspacesData={workspacesData}
-                            mutation={mutation}
-                            workspaceData={workspaceData}
-                        />
-                    </SidebarMenuItem>
+        <aside className='h-[calc(100vh-4rem)] w-[18rem] bg-gray-50 flex flex-col justify-between py-8 px-4 border-r dark:bg-gray-800/20'>
+            <WorkspaceSwitcher
+                loadingWorkspaces={loadingWorkspaces}
+                loadingWorkspace={loadingWorkspace}
+                workspacesData={workspacesData}
+                mutation={mutation}
+                workspaceData={workspaceData}
+            />
 
-                    <SidebarMenuItem className="px-4">
-                        <div className='h-32'>
-                            <UploadDatasetDialog
-                                wid={workspaceName === 'Default Workspace' ? '0' : widNo.toString()}
-                            />
-                        </div>
-                    </SidebarMenuItem>
-                </SidebarMenu>
-            </SidebarContent>
-            <SidebarFooter className="bg-primary/5 rounded-br-3xl border-t p-4">
-                <div className='flex items-center gap-4'>
-                    <Avatar className="border h-9 w-9 cursor-pointer rounded-lg">
-                        <AvatarImage src={me?.picture} alt={me?.name} className='rounded-lg' />
-                        <AvatarFallback className='rounded-lg bg-primary'>{me?.name?.charAt(0)?.toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <div className='flex flex-col'>
-                        <span className="font-medium">{me?.name}</span>
-                        <span className="text-xs text-muted-foreground">{me?.email}</span>
-                    </div>
-                </div>
-            </SidebarFooter>
-        </Sidebar>
+            <div className='border-t py-4'>
+                <span>Version 1.0.0</span>
+            </div>
+        </aside>
     )
 }
 

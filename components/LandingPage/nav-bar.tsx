@@ -19,10 +19,9 @@ export default function Navbar() {
       <div className="container flex h-20 max-w-screen-2xl items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <BetweenVerticalEnd className="h-6 w-6 text-primary" />
-            <span className="hidden font-bold sm:inline-block">
-              Data<span className="text-primary">Xpert</span>
-            </span>
+          <div className="relative">
+                    <div className="bg-[url('/logo_light.png')] dark:bg-[url('/logo_dark.png')] w-24 h-16 bg-contain bg-center bg-no-repeat transition-all duration-300 ease-in-out group-hover:scale-110" />
+                  </div>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">

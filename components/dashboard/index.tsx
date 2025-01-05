@@ -1,6 +1,6 @@
 'use client';
 
-import { FileSpreadsheet, FileX, Search, Bot, LineChart } from 'lucide-react';
+import { FileSpreadsheet, FileX, Search, Bot, LineChart, BoxIcon } from 'lucide-react';
 import moment from 'moment';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -16,6 +16,9 @@ import { WorkspaceSidebar } from './side-bar';
 import Topbar from '../common/top-bar';
 import Link from 'next/link';
 import CSVUploader from './upload-csv';
+import { Card, CardContent, CardHeader } from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
+import { DatasetGrid } from './dataset-grid';
 
 const DashboardComponent = ({
   workspacesData,
@@ -81,112 +84,119 @@ const DashboardComponent = ({
   const { data: me, isLoading: meLoading, error: profileError } = useProfile();
 
   return (
-    <main className="flex h-screen bg-background">
-      {/* <WorkspaceSidebar
-        loadingWorkspaces={loadingWorkspaces}
-        loadingWorkspace={loadingWorkspace}
-        workspacesData={workspacesData}
-        mutation={mutation}
-        workspaceData={workspaceData}
-        me={me}
-        widNo={widNo}
-        workspaceName={workspaceName}
-      /> */}
-      <div className='flex-1 overflow-auto space-y-4 flex flex-col'>
-        <Topbar title='Dashboard' workspaceData={workspaceData} />
-        <div className="space-y-8 w-[60rem] mx-auto pt-8">
-          <div className='h-44 w-full rounded-lg'>
-            <CSVUploader wid={widNo.toString()}/>
+    <main className="h-screen bg-background w-full">
+      <Topbar title='Dashboard' workspaceData={workspaceData} />
+      <div className='w-full flex'>
+        <WorkspaceSidebar
+          loadingWorkspaces={loadingWorkspaces}
+          loadingWorkspace={loadingWorkspace}
+          workspacesData={workspacesData}
+          mutation={mutation}
+          workspaceData={workspaceData}
+          me={me}
+          widNo={widNo}
+          workspaceName={workspaceName}
+        />
 
-          </div>
-          <div className="flex justify-between items-center">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <Input
-                type="text"
-                className="pl-10 w-64"
-                placeholder="Search files..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <SortBy handleSort={handleSort} />
-          </div>
-          <div>
-            {loadingDatasets ? (
-              <div className="space-y-2">
-                {[...Array(5)].map((_, index) => (
-                  <Skeleton key={index} className="h-12 w-full" />
-                ))}
+        <section className='container px-16 py-8 flex gap-16'>
+
+          <ScrollArea className="flex-1 h-[calc(100vh-4rem)]">
+            <div className='flex flex-col space-y-8'>
+              <div>
+                <CSVUploader wid={widNo.toString()} />
               </div>
-            ) : sortedDatasets?.length > 0 ? (
-              <DatasetTable datasets={sortedDatasets} widNo={widNo} FilteredWorkspaces={FilteredWorkspaces} deleteDatasetMutation={deleteDatasetMutation} moveDatasetMutation={moveDatasetMutation} />
-            ) : (
-              <EmptyState />
-            )}
-          </div>
-        </div>
+              <div className="w-full flex justify-between items-center border-t pt-8">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                  <Input
+                    type="text"
+                    className="pl-10 w-64"
+                    placeholder="Search files..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+                <SortBy handleSort={handleSort} />
+              </div>
+              <div>
+                {loadingDatasets ? (
+                  <div className="space-y-2">
+                    {[...Array(5)].map((_, index) => (
+                      <Skeleton key={index} className="h-12 w-full" />
+                    ))}
+                  </div>
+                ) : sortedDatasets?.length > 0 ? (
+                  <DatasetGrid datasets={sortedDatasets} widNo={widNo} FilteredWorkspaces={FilteredWorkspaces} deleteDatasetMutation={deleteDatasetMutation} moveDatasetMutation={moveDatasetMutation} />
+                ) : (
+                  <EmptyState />
+                )}
+              </div>
+            </div>
+          </ScrollArea>
+
+          <Card className='h-[60vh] w-[18rem] shadow-none bg-gray-50 dark:bg-gray-800/30'>
+            <CardHeader className='border-b p-4'>
+              Recent Models
+            </CardHeader>
+            <CardContent className='flex items-center justify-center flex-col h-full space-y-4'>
+              <BoxIcon size={44} className='text-muted-foreground' />
+              <span>No data found</span>
+            </CardContent>
+          </Card>
+        </section>
+
       </div>
     </main>
   );
 };
 
-const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
-  <div className="w-full overflow-auto">
-  <Table className="border border-border rounded-lg overflow-hidden">
-    <TableHeader>
-      <TableRow className="bg-muted">
-        <TableHead className="w-[40%] font-semibold">Dataset</TableHead>
-        <TableHead className="w-[20%] font-semibold">Last Modified</TableHead>
-        <TableHead className="w-[20%] font-semibold">Created</TableHead>
-        <TableHead className="text-right font-semibold">Actions</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      {datasets.map((file: any, index: number) => (
-        <TableRow 
-          key={file.id}
-          className={index % 2 === 0 ? 'bg-muted/30' : 'bg-muted/50'}
-        >
-          <TableCell className="font-medium border-t border-border">
-            <Link 
-              href={`/datasets/${file.workspace_id}/${file.id}?tab=overview`}
-              className="flex items-center text-primary hover:underline"
-            >
-              <FileSpreadsheet className="mr-2 h-4 w-4" />
-              <span>{file.name}</span>
-            </Link>
-          </TableCell>
-          <TableCell className="text-muted-foreground border-t border-border">
-            {file.updated_at && moment(file.updated_at).isValid() 
-              ? moment(file.updated_at).fromNow() 
-              : 'N/A'}
-          </TableCell>
-          <TableCell className="text-muted-foreground border-t border-border">
-            {moment(file.created_at).fromNow()}
-          </TableCell>
-          <TableCell className="text-right border-t border-border">
-            <DatasetActions
-              dataset={file}
-              widNo={widNo}
-              FilteredWorkspaces={FilteredWorkspaces}
-              deleteDatasetMutation={deleteDatasetMutation}
-              moveDatasetMutation={moveDatasetMutation}
-            />
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-</div>
-);
+// const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
+//   <div className="w-full overflow-auto">
+
+//       <div>
+//         {datasets.map((file: any, index: number) => (
+//           <Card
+//             key={file.id}
+//             className={index % 2 === 0 ? 'bg-muted/30' : 'bg-muted/50'}
+//           >
+//             <TableCell className="font-medium border-t border-border">
+//               <Link
+//                 href={`/datasets/${file.workspace_id}/${file.id}?tab=overview`}
+//                 className="flex items-center text-primary hover:underline"
+//               >
+//                 <FileSpreadsheet className="mr-2 h-4 w-4" />
+//                 <span>{file.name}</span>
+//               </Link>
+//             </TableCell>
+//             <TableCell className="text-muted-foreground border-t border-border">
+//               {file.updated_at && moment(file.updated_at).isValid()
+//                 ? moment(file.updated_at).fromNow()
+//                 : 'N/A'}
+//             </TableCell>
+//             <TableCell className="text-muted-foreground border-t border-border">
+//               {moment(file.created_at).fromNow()}
+//             </TableCell>
+//             <TableCell className="text-right border-t border-border">
+//               <DatasetActions
+//                 dataset={file}
+//                 widNo={widNo}
+//                 FilteredWorkspaces={FilteredWorkspaces}
+//                 deleteDatasetMutation={deleteDatasetMutation}
+//                 moveDatasetMutation={moveDatasetMutation}
+//               />
+//             </TableCell>
+//           </Card>
+
+//         ))}
+//         </div>
+//   </div>
+// );
 
 const EmptyState = () => (
   <div className="text-center py-12">
     <FileX className="mx-auto h-12 w-12 text-muted-foreground" />
     <h3 className="mt-2 text-lg font-medium">No datasets</h3>
-    <p className="mt-1 text-sm text-muted-foreground">Get started by creating a new dataset.</p>
-    <Button className="mt-4">Create Dataset</Button>
+    <p className="mt-1 text-sm text-muted-foreground">Get started by uploading a new dataset.</p>
   </div>
 );
 
