@@ -1,58 +1,37 @@
-'use client';
-
-import { BetweenVerticalEnd, Github, Moon, Sun } from 'lucide-react';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import LoginPopover from './login-dialog';
+import Link from 'next/link'
+import { Github } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import LoginDialog from './login-dialog'
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 max-w-screen-2xl items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-          <div className="relative">
-                    <div className="bg-[url('/logo_light.png')] dark:bg-[url('/logo_dark.png')] w-24 h-16 bg-contain bg-center bg-no-repeat transition-all duration-300 ease-in-out group-hover:scale-110" />
-                  </div>
-          </Link>
-        </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <nav className="flex items-center space-x-6">
-            <Link
-              href="https://github.com/ultroxium/DataXpert"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
+    <nav className="border-b bg-gray-50">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex-shrink-0">
+            <img src="/logo.png" alt="Logo" className='w-24 h-10 object-contain'/>
             </Link>
-            {isMounted && (
-              <button
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              >
-                {theme === 'dark' ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-                <span className="sr-only">Toggle theme</span>
-              </button>
-            )}
-            <LoginPopover title={"Sign in"}/>
-          </nav>
+          </div>
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              <Link href="/features" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                Features
+              </Link>
+              <Link href="/about" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                About Us
+              </Link>
+              <Button variant="ghost" size="icon" asChild>
+                <Link href="https://github.com/yourusername/yourrepo" target="_blank" rel="noopener noreferrer">
+                  <Github size={16}/>
+                </Link>
+              </Button>
+              <LoginDialog title='Sign in'/>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
-  );
+    </nav>
+  )
 }
 

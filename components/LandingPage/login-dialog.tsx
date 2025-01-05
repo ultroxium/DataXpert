@@ -13,18 +13,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-export default function LoginDialog({ title = 'Sign in' }: { title: string }) {
+export default function LoginDialog({ title = 'Sign in', isArrow=false }: { title: string, isArrow?:boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  useState(() => {
-    const token = searchParams.get('token');
-    if (token) {
-      Cookies.set('token', token, { expires: 7 });
-      router.push('/dashboard');
-    }
-  }, [searchParams, router]);
 
   const handleAuth = (provider: 'google' | 'github') => {
     router.push(`${process.env.NEXT_PUBLIC_API_URL}/auth/${provider}`);
@@ -34,7 +25,7 @@ export default function LoginDialog({ title = 'Sign in' }: { title: string }) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="default" className="rounded-full text-lg font-semibold px-6 py-2 transition-all duration-300 hover:scale-105">
-          {title}
+          {title} {isArrow && <ArrowRight size={16}/>}
         </Button>
       </DialogTrigger>
       <AnimatePresence>
@@ -46,9 +37,9 @@ export default function LoginDialog({ title = 'Sign in' }: { title: string }) {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="border-none shadow-xl dark:bg-gray-800 bg-white">
+              <Card className="p-8 shadow-xl dark:bg-gray-800 bg-white">
                 <CardHeader className="space-y-1 text-center">
-                  <CardTitle className="text-3xl font-bold tracking-tight">Welcome back</CardTitle>
+                  <CardTitle className="text-3xl font-bold tracking-tight">Welcome to DataXpert</CardTitle>
                   <CardDescription className="text-base">
                     Choose your preferred sign-in method
                   </CardDescription>

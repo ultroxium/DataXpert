@@ -1,11 +1,11 @@
 import Faqs from '@/components/LandingPage/Faqs';
 import GetStarted from '@/components/LandingPage/get-started-section';
-import { Hero } from '@/components/LandingPage/hero-section';
+import  Hero  from '@/components/LandingPage/hero-section';
 import { ReviewMarquee } from '@/components/LandingPage/reviews-section';
-import Features from '@/components/LandingPage/feature-section';
 import Navbar from '@/components/LandingPage/nav-bar';
 import Footer from '@/components/LandingPage/footer';
 import { constructMetadata } from '@/lib/metadata';
+import { FeaturesSection } from '@/components/LandingPage/feature-section';
 
 export const metadata = constructMetadata({
   title: 'DataXpert - Predictive Analytics Made Easy',
@@ -18,6 +18,7 @@ export default function Home() {
     <div className="">
       <Navbar />
       <Hero />
+      <FeaturesSection/>
       {/* <Features />
       <ReviewMarquee />
       <GetStarted /> */}

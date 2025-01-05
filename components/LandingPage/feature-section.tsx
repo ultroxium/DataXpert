@@ -1,67 +1,85 @@
-import { BarChart3, Bot, FileUp, Users, Workflow } from 'lucide-react';
-import { Card, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
-import SparklesText from '@/components/ui/sparkles-text';
+'use client'
 
-const Features = () => {
-  return (
-    <section className="py-16 flex items-center justify-center overflow-hidden">
-      <div className="max-w-[75vw]">
-        <h2 className="text-3xl font-bold text-center mb-12 text-muted-foreground">Our <span className='text-primary'>Features</span></h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`${feature.color} rounded-lg p-6 hover:shadow-xl transition-shadow duration-300 ease-in-out`}
-            >
-              <div className="flex items-center mb-4">
-                <div className="mr-4 p-3 bg-primary/10 rounded-full text-primary">
-                  {feature.icon}
-                </div>
-                {feature.title}
-              </div>
-              <p className="text-gray-600 dark:text-gray-300">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Slider from 'react-slick'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
 
 const features = [
   {
-    title: <h3 className="text-xl font-semibold">Seamless <span className='text-rose-600'>Data Uploading</span></h3>,
-    icon: <FileUp size={20} />,
-    desc: 'Effortlessly import datasets using our API or CSV file support.',
-    color: 'bg-rose-800/10',
+    title: 'Advanced Analytics',
+    description: 'Gain deep insights from your CSV data with our powerful analytics tools.',
+    icon: '📊',
   },
   {
-    title: <h3 className="text-xl font-semibold">Smart <span className='text-blue-600'>AI Assistant</span></h3>,
-    icon: <Bot size={20} />,
-    desc: 'Leverage Gemini AI for in-depth data exploration and insights.',
-    color: 'bg-blue-800/10',
+    title: 'Machine Learning',
+    description: 'Leverage cutting-edge ML algorithms to predict trends and patterns.',
+    icon: '🧠',
   },
+  {
+    title: 'Real-time Visualization',
+    description: 'Create stunning, interactive visualizations of your data in real-time.',
+    icon: '📈',
+  },
+  {
+    title: 'Data Cleaning',
+    description: 'Automatically clean and preprocess your CSV data for analysis.',
+    icon: '🧹',
+  },
+]
 
-  {
-    title: <h3 className="text-xl font-semibold"><span className='text-orange-600'>Collaborate</span> with Your Team</h3>,
-    icon: <Users size={20} />,
-    desc: 'Work together in real-time to achieve your data goals.',
-    color: 'bg-orange-800/10',
-  },
-  {
-    title: <h3 className="text-xl font-semibold">Dynamic Visual Analytics</h3>,
-    icon: <BarChart3 size={20} />,
-    desc: 'Transform your data into actionable charts and graphs instantly.',
-    color: 'bg-gray-800/10',
-  },
+const FeatureCard = ({ title, description, icon }: { title: string; description: string; icon: string }) => (
+  <motion.div
+    className="bg-white p-6 rounded-lg border h-[14rem]"
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  >
+    <div className="text-4xl mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </motion.div>
+)
 
-  {
-    title: <h3 className="text-xl font-semibold">From <span className='text-purple-600'>Prep</span> to <span className='text-purple-600'>Prediction</span></h3>,
-    icon: <Workflow size={20} />,
-    desc: 'Shape your data, craft your model, and unleash powerful predictions—all on your terms. Integrate your custom-built API wherever you need it, effortlessly.',
-    color: 'bg-purple-800/10',
+export function FeaturesSection() {
+  const [sliderRef, setSliderRef] = useState<Slider | null>(null)
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
   }
 
-];
+  return (
+    <section className="pb-24">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative">
+          <Slider ref={(slider) => setSliderRef(slider)} {...settings}>
+            {features.map((feature, index) => (
+              <div key={index} className="px-4">
+                <FeatureCard {...feature} />
+              </div>
+            ))}
+          </Slider>
+          <motion.button
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
+            onClick={() => sliderRef?.slickPrev()}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </motion.button>
+          <motion.button
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md"
+            onClick={() => sliderRef?.slickNext()}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </motion.button>
+        </div>
+      </div>
+    </section>
+  )
+}
 
-export default Features;
