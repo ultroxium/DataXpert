@@ -21,7 +21,7 @@ export default function UploadDatasetDialog({ wid }: UploadDatasetDialogProps) {
       <DialogTrigger asChild>
         <span className='underline underline-offset-4 hover:text-muted-foreground cursor-pointer'>Fetch from API</span>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className='p-8'>
       <DialogHeader>
           <DialogTitle>Fetch Data from API</DialogTitle>
           <DialogDescription>

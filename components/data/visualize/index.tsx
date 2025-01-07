@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import React, { Suspense, useEffect, useState } from 'react';
 import { ChartCreateSideBar } from './chart-create-sidebar';
-import Topbar from '@/components/common/top-bar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ChartBuilderAI } from './chart-builder-ai';
 import { BeautifulChartRibbon } from './charts-config';
@@ -47,30 +46,28 @@ const DataVisualizePage = ({
   );
 
   return (
-    <div className='flex'>
-      <ChartCreateSideBar workspaceId={workspaceId} datasetId={datasetId} />
+    <div className='flex w-full items-start justify-between px-16 gap-8'>
       {
-        <div className="w-full h-full">
-          <Topbar layout="dataset" title='Data Visualization' workspaceId={workspaceId} datasetId={datasetId} />
-          <BeautifulChartRibbon/>
-          {/* <div className="w-full p-4 flex items-center justify-start gap-4"> */}
-            {/* <div className="relative flex items-center ">
-              <Search size={16} className="absolute left-3" />
-              <input
-                type="text"
-                className="pl-10 pr-4 py-1 w-full border rounded-md focus:outline-none focus:border-transparent font-normal"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div> */}
-            {/* <PresetShare workspaceId={workspaceId} datasetId={datasetId} /> */}
-          {/* </div> */}
+        <div className="flex-1 h-full py-8">
+          {/* <BeautifulChartRibbon /> */}
+          <div className="w-full flex items-center justify-start gap-4">
+            <div className="relative flex items-center ">
+                <Search size={16} className="absolute left-3" />
+                <input
+                  type="text"
+                  className="pl-10 pr-4 py-1 w-fit border rounded-md focus:outline-none focus:border-transparent font-normal"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+          {/* <PresetShare workspaceId={workspaceId} datasetId={datasetId} /> */}
+          </div>
 
           <Suspense>
             {isChartDataLoading && (
               <div className="h-full w-full p-4 pb-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
                   {[...Array(6)].map((_, index) => (
                     <Card
                       key={index}
@@ -98,7 +95,7 @@ const DataVisualizePage = ({
           </Suspense>
         </div>
       }
-      <ChartBuilderAI/>
+      <ChartCreateSideBar workspaceId={workspaceId} datasetId={datasetId} />
     </div>
   );
 };

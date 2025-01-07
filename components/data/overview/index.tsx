@@ -10,8 +10,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Binary, CaseSensitive, BarChart, PieChart, ArrowRight, ArrowRightIcon, Bot } from 'lucide-react';
 import { staticalTerms } from '@/constants/statical-terms';
 import { useRouter } from 'next/navigation';
-import Topbar from '@/components/common/top-bar';
-import PreviewPageSidebar from './preview-sidebar';
 
 const NullHandler = React.lazy(() => import('@/components/data/null-handler'));
 const ViewDataTable = React.lazy(() => import('./table-data'));
@@ -60,14 +58,10 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
   const graphPlots = columnInsights?.graph_plots || [];
 
   return (
-    <main className='flex flex-col'>
-        <Topbar title='Data Overview'/>
-      <section className='w-full h-[calc(100vh-4rem)] space-y-4 flex max-h-screen'>
-        <div className='w-[400px] h-full flex items-start justify-end border-r bg-gray-50 dark:bg-muted/30'>
-        <PreviewPageSidebar />
-        </div>
-        <div className="flex-1 flex flex-col overflow-x-hidden px-4 max-w-[60rem]" style={{scrollbarWidth:'none'}}>
-          
+      <section className='w-full h-full space-y-4 flex'>
+        
+        <div className="flex-1 flex flex-col overflow-x-hidden px-16" style={{ scrollbarWidth: 'none' }}>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 pl-0 items-center border-b">
             {/* Dataset Name */}
             <div className="text-start">
@@ -222,9 +216,8 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
             </CardContent>
           </div>
         </div>
-       
+
       </section>
-    </main>
   );
 }
 

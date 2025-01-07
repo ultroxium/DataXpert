@@ -2,7 +2,11 @@
 import { getTokenFromCookies } from '@/config/token-config';
 import axios, { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
-import { Workspace } from '../types';
+
+export interface Workspace {
+    id?: number; 
+    name: string;
+  }
 
 // Helper function to fetch workspaces
 async function fetchWorkspaces() {
@@ -68,8 +72,8 @@ export async function GET(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response?.data.detail || error.message}` },
-        { status: error.response?.status },
+        { message: `${error.response.data.detail || error.message}` },
+        { status: error.response.status },
       );
     } else {
       return NextResponse.json({ message: `Error fetching ${type}: ${error}` }, { status: 500 });
@@ -125,17 +129,17 @@ export async function POST(req: Request) {
 
   let response;
   try {
-    if (type === 'workspace' ) {
+    if (type === 'workspace') {
       const newWorkspace: Workspace = await req.json();
       response = await addWorkspace(newWorkspace);
-    } else if (type === 'dataset' && workspaceId) {
+    } else if (type === 'dataset') {
       const values = await req.formData();
       const name = values.get('name');
       const description = values.get('description');
       const file = values.get('file');
 
       response = await addDataset(workspaceId, values);
-    } else if (type === 'apidata' && workspaceId) {
+    } else if (type === 'apidata') {
       const values = await req.formData();
       const name = values.get('name');
       const description = values.get('description');
@@ -148,8 +152,8 @@ export async function POST(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response?.data.detail || error.message}` },
-        { status: error.response?.status },
+        { message: `${error.response.data.detail || error.message}` },
+        { status: error.response.status },
       );
     } else {
       return NextResponse.json({ message: `Error adding ${type}: ${error}` }, { status: 500 });
@@ -191,7 +195,7 @@ export async function DELETE(req: Request) {
     if (type === 'workspace' && workspaceId) {
       response = await deleteWorkspace(workspaceId);
     } else if (type === 'dataset' && datasetId) {
-      response = await deleteDataset(workspaceId || "0", datasetId);
+      response = await deleteDataset(workspaceId, datasetId);
     } else {
       return NextResponse.json({ message: 'Invalid type parameter' }, { status: 400 });
     }
@@ -200,8 +204,8 @@ export async function DELETE(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response?.data.detail || error.message}` },
-        { status: error.response?.status },
+        { message: `${error.response.data.detail || error.message}` },
+        { status: error.response.status },
       );
     } else {
       return NextResponse.json({ message: `Error deleting ${type}: ${error}` }, { status: 500 });
@@ -249,9 +253,9 @@ export async function PUT(req: Request) {
   try {
     let response;
 
-    if (type === 'movedataset' && datasetId && workspaceId && targetWorkspaceId) {
+    if (type === 'movedataset' && datasetId) {
       response = await moveDataset(datasetId, workspaceId, targetWorkspaceId);
-    } else if (type === 'refresh' && datasetId && workspaceId && refresh_period) {
+    } else if (type === 'refresh' && datasetId) {
       response = await refreshData(workspaceId, datasetId, refresh_period);
     } else {
       return NextResponse.json({ message: 'Invalid type parameter' }, { status: 400 });
@@ -261,8 +265,8 @@ export async function PUT(req: Request) {
   } catch (error) {
     if (error instanceof AxiosError) {
       return NextResponse.json(
-        { message: `${error.response?.data.detail || error.message}` },
-        { status: error.response?.status },
+        { message: `${error.response.data.detail || error.message}` },
+        { status: error.response.status },
       );
     } else {
       return NextResponse.json({ message: `Error editing ${type}: ${error}` }, { status: 500 });

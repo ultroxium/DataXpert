@@ -26,7 +26,7 @@ interface UploadDatasetDialogProps {
 
 // add dataset to workspace
 async function addDataset(wid: string, values: FormData) {
-  const response = await axios.post(`/workspaces/api?type=dataset&wid=${wid}`, values);
+  const response = await axios.post(`/api/dashboard?type=dataset&wid=${wid}`, values);
   return response.data;
 }
 

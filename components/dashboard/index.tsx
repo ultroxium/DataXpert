@@ -98,10 +98,8 @@ const DashboardComponent = ({
           workspaceName={workspaceName}
         />
 
-        <section className='container px-16 py-8 flex gap-16'>
-
-          <ScrollArea className="flex-1 h-[calc(100vh-4rem)]">
-            <div className='flex flex-col space-y-8'>
+        <section className='w-full px-16 py-8 flex gap-8 h-[calc(100vh-4rem)] overflow-y-auto items-start justify-between overflow-x-hidden' style={{ scrollbarWidth: 'none' }}>
+            <div className='flex-1 flex flex-col space-y-8'>
               <div>
                 <CSVUploader wid={widNo.toString()} />
               </div>
@@ -132,9 +130,8 @@ const DashboardComponent = ({
                 )}
               </div>
             </div>
-          </ScrollArea>
 
-          <Card className='h-[60vh] w-[18rem] shadow-none bg-gray-50 dark:bg-gray-800/30'>
+          <Card className='h-[60vh] w-[20rem] sticky top-8 shadow-none bg-gray-50 dark:bg-gray-800/30'>
             <CardHeader className='border-b p-4'>
               Recent Models
             </CardHeader>

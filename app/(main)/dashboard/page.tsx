@@ -10,36 +10,36 @@ import Spinner from '@/components/common/spinner';
 import DashboardComponent from '@/components/dashboard';
 
 const fetchWorkspaces = async (): Promise<any> => {
-  const response = await axios.get('/dashboard/api?type=workspaces');
+  const response = await axios.get('/api/dashboard?type=workspaces');
   return response.data;
 };
 
 // fetch individual workspace
 const fetchWorkspaceById = async (workspaceId: string): Promise<any> => {
-  const response = await axios.get(`/dashboard/api?type=workspace&wid=${workspaceId}`);
+  const response = await axios.get(`/api/dashboard?type=workspace&wid=${workspaceId}`);
   return response.data;
 };
 
 // API fetch function for datasets by workspace ID
 export const fetchDatasets = async (workspaceId: string): Promise<any> => {
-  const response = await axios.get(`/dashboard/api?type=datasets&wid=${workspaceId}`);
+  const response = await axios.get(`/api/dashboard?type=datasets&wid=${workspaceId}`);
   return response.data;
 };
 
 export const fetchDefaultDatasets = async (): Promise<any> => {
-  const response = await axios.get(`/dashboard/api?type=default`);
+  const response = await axios.get(`/api/dashboard?type=default`);
   return response.data;
 };
 
 const addWorkspace = async (newWorkspace: Workspace): Promise<Workspace> => {
-  const response = await axios.post('/dashboard/api?type=workspace', newWorkspace);
+  const response = await axios.post('/api/dashboard?type=workspace', newWorkspace);
   return response.data;
 };
 
 // delete datasets
 const deleteDataset = async (workspaceId: string, datasetId: string): Promise<any> => {
   const response = await axios.delete(
-    `/dashboard/api?type=dataset&wid=${workspaceId}&did=${datasetId}`,
+    `/api/dashboard?type=dataset&wid=${workspaceId}&did=${datasetId}`,
   );
   return response.data;
 };
@@ -47,7 +47,7 @@ const deleteDataset = async (workspaceId: string, datasetId: string): Promise<an
 //put dataset
 async function moveDataset(did: string, current_wid: string, workspace_id: string) {
   const response = await axios.put(
-    `/dashboard/api?type=movedataset&did=${did}&wid=${current_wid}&twid=${workspace_id}`,
+    `/api/dashboard?type=movedataset&did=${did}&wid=${current_wid}&twid=${workspace_id}`,
   );
   return response.data;
 }

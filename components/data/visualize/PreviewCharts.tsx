@@ -75,11 +75,11 @@ const PreviewCharts: React.FC<ChartPreviewProps> = ({ chartsData, columnDetails,
   });
 
   return (
-    <div className="w-full p-4 pb-20 relative">
+    <div className="w-full relative">
       {chartsData?.length > 0 ? (
         <div className=" w-full">
           <div
-            className={`w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 py-4 transition ease-linear duration-1000 `}>
+            className={`w-full  grid md:grid-cols-2 grid-cols-1 gap-4 py-4 transition ease-linear duration-1000 `}>
             {chartsData?.map((item: any, index) => {
               const ChartComponent = componentMap.get(item.key);
               return (

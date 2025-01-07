@@ -1,4 +1,5 @@
-import { SidebarProvider } from '@/components/ui/sidebar';
+import Sidebar from '@/components/common/data-sidebar';
+import Topbar from '@/components/common/top-bar';
 import { constructMetadata } from '@/lib/metadata';
 
 export const metadata = constructMetadata({
@@ -8,9 +9,13 @@ export const metadata = constructMetadata({
 });
 
 export default function OverView({ children }: { children: React.ReactNode }) {
-  return <>
-    <SidebarProvider>
-      {children}
-    </SidebarProvider>
-  </>;
+  return (<div className='flex flex-col h-screen'>
+    <Topbar />
+    <div className="flex h-[calc(100vh-4rem)]">
+      <Sidebar />
+      <section className='h-full w-full overflow-auto overflow-x-hidden' style={{ scrollbarWidth: "none" }}>
+        {children}
+      </section>
+    </div>
+  </div>);
 }

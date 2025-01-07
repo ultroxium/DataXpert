@@ -8,7 +8,7 @@ export default async function DatasetPage({
   const { workspace_id, dataset_id } = await params;
 
   return (
-    <main className="w-full h-screen flex flex-col">
+    <main className="w-full h-full flex flex-col">
       <Main workspaceId={workspace_id} datasetId={dataset_id} />
     </main>
   );

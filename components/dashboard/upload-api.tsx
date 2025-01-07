@@ -28,7 +28,7 @@ interface FetchUploaderProps {
 }
 
 async function addDatasetFromAPI(wid: string, values: FormData) {
-  const response = await axios.post(`/workspaces/api?type=apidata&wid=${wid}`, values);
+  const response = await axios.post(`/api/dashboard?type=apidata&wid=${wid}`, values);
   return response.data;
 }
 
@@ -54,7 +54,7 @@ const FetchUploader: React.FC<FetchUploaderProps> = ({ wid }) => {
       name: '',
       description: '',
       url: '',
-      headers: [{ key: '', value: '' }],
+      headers: [],
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Name is required'),
@@ -127,7 +127,7 @@ const FetchUploader: React.FC<FetchUploaderProps> = ({ wid }) => {
         )}
       </div>
 
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <label htmlFor="description" className="text-sm font-medium">
           Description (optional)
         </label>
@@ -143,7 +143,7 @@ const FetchUploader: React.FC<FetchUploaderProps> = ({ wid }) => {
         ) : (
           <p className="text-sm text-muted-foreground">Dataset description</p>
         )}
-      </div>
+      </div> */}
 
       <div className="space-y-2">
         <label htmlFor="url" className="text-sm font-medium">
@@ -162,7 +162,7 @@ const FetchUploader: React.FC<FetchUploaderProps> = ({ wid }) => {
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2 flex flex-col">
         <label className="text-sm font-medium">Headers (optional)</label>
         {formik.values.headers.map((header, index) => (
           <div key={index} className="flex items-center space-x-2">

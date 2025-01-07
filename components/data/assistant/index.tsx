@@ -9,7 +9,7 @@ import { useChatStore } from '@/store/assistant';
 import { BetweenVerticalEnd, Loader2, MessageSquareX, Send } from 'lucide-react';
 import { useProfile } from '@/hooks/use-profile';
 import Topbar from '@/components/common/top-bar';
-import { PreviewPageSideBar } from '../overview/preview-sidebar';
+// import { PreviewPageSideBar } from '../overview/preview-sidebar';
 
 const ChatPage = ({ workspaceId, datasetId }: { workspaceId: string; datasetId: string }) => {
     const { data: me, isLoading: meLoading } = useProfile();
@@ -57,84 +57,78 @@ const ChatPage = ({ workspaceId, datasetId }: { workspaceId: string; datasetId: 
     ];
 
     return (
-        <main className='flex'>
-            <PreviewPageSideBar />
-            <section className='flex-1 overflow-auto space-y-4 flex flex-col min-h-[500px]'>
-                <Topbar title='Assistant' />
-                <div className={`flex flex-col h-[calc(100vh-5rem)] bg-background relative overflow-hidden ${chats.length === 0 ? 'justify-center items-center' : ''}`}>
-                    {chats.length === 0 ? (
-                        <div className="w-full max-w-2xl px-4">
-                            <h1 className="text-3xl font-bold text-center mb-8">Welcome to AI Assistant</h1>
-                            <div className="relative mb-4">
-                                <Input
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                    onKeyDown={handleKeyPress}
-                                    placeholder="Ask me anything..."
-                                    className="w-full pr-12 h-14 rounded-full bg-white dark:bg-white/10 border-2 border-primary text-foreground placeholder:text-muted-foreground"
-                                />
-                                <Button
-                                    onClick={() => handleMessageSend()}
-                                    size="icon"
-                                    className="absolute right-2 top-2 rounded-full bg-primary hover:bg-primary/90 h-10 w-10"
-                                    disabled={!message.trim()}
-                                >
-                                    <Send className="h-5 w-5 text-white" />
-                                </Button>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                {dummyPrompts.map((prompt, index) => (
-                                    <Button
-                                        key={index}
-                                        variant="outline"
-                                        className="justify-start text-left h-auto py-2 px-4"
-                                        onClick={() => handleMessageSend(prompt)}
-                                    >
-                                        {prompt}
-                                    </Button>
-                                ))}
-                            </div>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="flex-1 overflow-y-auto p-4" ref={chatContainerRef} style={{
-                                scrollbarWidth:"none",
-                            }}>
-                                {isChatLoading ? (
-                                    <ChatSkeleton />
-                                ) : chats.length > 0 ? (
-                                    chats.map((item, index) => (
-                                        <ChatMessage key={index} item={item} me={me} />
-                                    ))
-                                ) : (
-                                    <EmptyChatState />
-                                )}
-                                {isMessageSending && <TypingIndicator />}
-                            </div>
-                            <div className="sticky bottom-0 p-4 border-t bg-background">
-                                <div className="max-w-3xl mx-auto relative">
-                                    <Input
-                                        value={message}
-                                        onChange={(e) => setMessage(e.target.value)}
-                                        onKeyDown={handleKeyPress}
-                                        placeholder="Type your message..."
-                                        className="w-full pr-12 h-12 rounded-full bg-white dark:bg-white/10 border-2 border-primary text-foreground placeholder:text-muted-foreground"
-                                    />
-                                    <Button
-                                        onClick={() => handleMessageSend()}
-                                        size="icon"
-                                        className="absolute right-2 top-1 rounded-full bg-primary hover:bg-primary/90 h-10 w-10"
-                                        disabled={!message.trim()}
-                                    >
-                                        <Send className="h-5 w-5 text-white" />
-                                    </Button>
-                                </div>
-                            </div>
-                        </>
-                    )}
+        <>
+            {chats.length === 0 ? (
+                <div className="w-full h-full flex items-center justify-center flex-col">
+                    <h1 className="text-3xl font-bold text-center mb-8">{"Ask Me :)"}</h1>
+                    <div className="relative mb-4">
+                        <Input
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            onKeyDown={handleKeyPress}
+                            placeholder="Ask me anything..."
+                            className="pr-12 h-14 w-[50rem] rounded-full bg-white dark:bg-white/10 border-2 border-primary text-foreground placeholder:text-muted-foreground"
+                        />
+                        <Button
+                            onClick={() => handleMessageSend()}
+                            size="icon"
+                            className="absolute right-2 top-2 rounded-full bg-primary hover:bg-primary/90 h-10 w-10"
+                            disabled={!message.trim()}
+                        >
+                            <Send className="h-5 w-5 text-white" />
+                        </Button>
+                    </div>
+                    <div className="flex gap-2">
+                        {dummyPrompts.map((prompt, index) => (
+                            <Button
+                                key={index}
+                                variant="outline"
+                                className="justify-start text-left h-auto py-2 px-4"
+                                onClick={() => handleMessageSend(prompt)}
+                            >
+                                {prompt}
+                            </Button>
+                        ))}
+                    </div>
                 </div>
-            </section>
-        </main>
+            ) : (
+                <>
+                    <div className="flex-1 overflow-y-auto  px-16 py-8" ref={chatContainerRef} style={{
+                        scrollbarWidth: "none",
+                    }}>
+                        {isChatLoading ? (
+                            <ChatSkeleton />
+                        ) : chats.length > 0 ? (
+                            chats.map((item, index) => (
+                                <ChatMessage key={index} item={item} me={me} />
+                            ))
+                        ) : (
+                            <EmptyChatState />
+                        )}
+                        {isMessageSending && <TypingIndicator />}
+                    </div>
+                    <div className="sticky bottom-0 p-4 border-t bg-background">
+                        <div className="max-w-3xl mx-auto relative">
+                            <Input
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                onKeyDown={handleKeyPress}
+                                placeholder="Type your message..."
+                                className="w-full pr-12 h-12 rounded-full bg-white dark:bg-white/10 border-2 border-primary text-foreground placeholder:text-muted-foreground"
+                            />
+                            <Button
+                                onClick={() => handleMessageSend()}
+                                size="icon"
+                                className="absolute right-2 top-1 rounded-full bg-primary hover:bg-primary/90 h-10 w-10"
+                                disabled={!message.trim()}
+                            >
+                                <Send className="h-5 w-5 text-white" />
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            )}
+        </>
     );
 };
 

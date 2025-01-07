@@ -29,7 +29,7 @@ export function WorkspaceSidebar({
     workspaceName,
 }: any) {
     return (
-        <aside className='h-[calc(100vh-4rem)] w-[18rem] bg-gray-50 flex flex-col justify-between py-8 px-4 border-r dark:bg-gray-800/20'>
+        <aside className='h-[calc(100vh-4rem)] w-[20rem] bg-gray-50 flex flex-col justify-between py-8 px-4 border-r dark:bg-gray-800/20'>
             <WorkspaceSwitcher
                 loadingWorkspaces={loadingWorkspaces}
                 loadingWorkspace={loadingWorkspace}

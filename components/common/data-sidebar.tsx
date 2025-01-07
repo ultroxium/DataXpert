@@ -31,21 +31,21 @@ const sidebarItems = [
   },
 ]
 
-const PreviewPageSidebar=()=> {
+const Sidebar=()=> {
   const tab = SearchParam("tab")
 
   return (
-    <aside className="w-64 h-full flex flex-col justify-between">
-      <nav className="flex-grow py-4">
+    <aside className="w-[20rem] h-full flex flex-col justify-between bg-gray-50 dark:bg-gray-800/30 border-r">
+      <nav className="flex-grow p-4">
         <div className="px-4 mb-4">
-          <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Menu</h2>
+          <h2 className="font-semibold text-gray-500 uppercase tracking-wider">Menu</h2>
         </div>
-        <ul className="space-y-2 pr-4">
+        <ul className="space-y-4">
           {sidebarItems.map((item) => (
             <li key={item.tab}>
               <Link
                 href={`?tab=${item.tab}`}
-                className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out ${
+                className={`flex items-center px-4 py-2 font-medium rounded-md transition-colors duration-150 ease-in-out ${
                   tab === item.tab
                     ? 'bg-muted '
                     : ' hover:bg-muted '
@@ -57,15 +57,9 @@ const PreviewPageSidebar=()=> {
             </li>
           ))}
         </ul>
-      </nav>
-
-      {/* version info */}
-        <div className="flex-shrink-0 px-4 py-4 text-xs text-gray-500 border-t">
-            <span className="text-muted-foreground">Version 1.0.0</span>
-        </div>
-      
+      </nav>      
     </aside>
   )
 }
 
-export default PreviewPageSidebar;
+export default Sidebar;
