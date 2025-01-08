@@ -34,7 +34,7 @@ export const DatasetGrid: React.FC<DatasetGridProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
       {datasets.map((file, index) => (
-        <Card key={file.id} className="flex flex-col justify-between shadow-none bg-gray-50 dark:bg-gray-800/30">
+        <Card key={file.id} className="flex flex-col justify-between shadow-none bg-gray-50 dark:bg-slate-800/10">
           <CardContent className="pt-4">
             <Link
               href={`/datasets/${file.workspace_id}/${file.id}?tab=overview`}

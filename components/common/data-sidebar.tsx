@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import { AreaChart, Cpu, Home, MessageSquare, Settings, Sparkles } from 'lucide-react'
+import { AreaChart, BotIcon, Cpu, Home, MessageSquare, Settings, Sparkles } from 'lucide-react'
 import SearchParam from '@/lib/search-param'
 
 const sidebarItems = [
@@ -20,9 +20,14 @@ const sidebarItems = [
     icon: AreaChart,
   },
   {
-    title: "PreProcess & Train",
+    title: "Process Data",
     tab: "preprocess",
     icon: Cpu,
+  },
+  {
+    title: "Train Data",
+    tab: "train",
+    icon: BotIcon,
   },
   {
     title: "Make Prediction",
@@ -35,7 +40,7 @@ const Sidebar=()=> {
   const tab = SearchParam("tab")
 
   return (
-    <aside className="w-[20rem] h-full flex flex-col justify-between bg-gray-50 dark:bg-gray-800/30 border-r">
+    <aside className="w-[20rem] h-full flex flex-col justify-between bg-gray-50 dark:bg-slate-800/10 border-r">
       <nav className="flex-grow p-4">
         <div className="px-4 mb-4">
           <h2 className="font-semibold text-gray-500 uppercase tracking-wider">Menu</h2>

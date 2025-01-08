@@ -98,7 +98,7 @@ export function ChartCreateSideBar({
     };
 
     return (
-        <Card className='w-[20rem] h-fit border mt-8 sticky top-8 p-0  shadow-none bg-gray-50 dark:bg-gray-800/30'>
+        <Card className='w-[20rem] h-fit border mt-8 sticky top-8 p-0  shadow-none bg-gray-50 dark:bg-slate-800/10'>
             <CardHeader className='border-b p-4'>
                 Create Chart
             </CardHeader>

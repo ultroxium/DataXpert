@@ -93,7 +93,7 @@ const ChatPage = ({ workspaceId, datasetId }: { workspaceId: string; datasetId: 
                 </div>
             ) : (
                 <>
-                    <div className="flex-1 overflow-y-auto  px-16 py-8" ref={chatContainerRef} style={{
+                    <div className="flex-1 overflow-y-auto  px-8 py-8" ref={chatContainerRef} style={{
                         scrollbarWidth: "none",
                     }}>
                         {isChatLoading ? (

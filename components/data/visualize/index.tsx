@@ -46,7 +46,7 @@ const DataVisualizePage = ({
   );
 
   return (
-    <div className='flex w-full items-start justify-between px-16 gap-8'>
+    <div className='flex w-full items-start justify-between px-8 gap-8'>
       {
         <div className="flex-1 h-full py-8">
           {/* <BeautifulChartRibbon /> */}
@@ -66,12 +66,12 @@ const DataVisualizePage = ({
 
           <Suspense>
             {isChartDataLoading && (
-              <div className="h-full w-full p-4 pb-20">
+              <div className="h-full w-full py-4 pb-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
                   {[...Array(6)].map((_, index) => (
                     <Card
                       key={index}
-                      className="w-full h-full flex flex-col items-center justify-center shadow-none border-none p-4 gap-4">
+                      className="w-full h-full flex flex-col items-center justify-center shadow-none p-4 gap-4">
                       <div className="flex w-full justify-between gap-4">
                         <Skeleton className="h-16 w-[80%]" />
                         <Skeleton className="h-16 w-[20%]" />

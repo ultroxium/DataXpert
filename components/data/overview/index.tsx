@@ -60,7 +60,7 @@ export default function DatasetVisualization({ workspaceId, datasetId }: { works
   return (
       <section className='w-full h-full space-y-4 flex'>
         
-        <div className="flex-1 flex flex-col overflow-x-hidden px-16" style={{ scrollbarWidth: 'none' }}>
+        <div className="flex-1 flex flex-col overflow-x-hidden px-8" style={{ scrollbarWidth: 'none' }}>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 pl-0 items-center border-b">
             {/* Dataset Name */}

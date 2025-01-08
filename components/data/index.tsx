@@ -8,6 +8,11 @@ import { ColumnInsights } from './insights';
 import { ChartsData } from './visualize/ChartsData';
 import ChatPage from './assistant';
 import NotFound from '../not-found';
+import FeatureEngineeringPage from './preproces';
+import { ProcessedData } from './preproces/process-data';
+import { ModelLists } from './train/model-list';
+import TrainPage from './train';
+import TestModel from './predict';
 
 const DatasetVisualization = lazy(() => import('./overview'));
 const DataVisualizePage = lazy(() => import('./visualize'));
@@ -51,14 +56,25 @@ export default function Main({
       {
         tab === "preprocess" && (
           <>
-            <NotFound />
+            <ColumnDetails workspaceId={workspaceId} datasetId={datasetId} isProcessed="true" />
+            <ProcessedData workspaceId={workspaceId} datasetId={datasetId} />
+            <FeatureEngineeringPage workspaceId={workspaceId} datasetId={datasetId} />
           </>)
       }
 
       {
+        tab === "train" && (
+          <>
+            <ModelLists workspaceId={workspaceId} datasetId={datasetId} />
+            <ColumnDetails workspaceId={workspaceId} datasetId={datasetId} isProcessed="true" />
+            <TrainPage workspaceId={workspaceId} datasetId={datasetId} />
+          </>)
+      }
+
+{
         tab === "predict" && (
           <>
-            <NotFound />
+            <TestModel workspaceId={workspaceId} datasetId={datasetId}/>
           </>)
       }
 

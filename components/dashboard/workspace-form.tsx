@@ -46,7 +46,6 @@ const WorkspaceSwitcher = ({
   const [open, setOpen] = React.useState(false);
   const [showNewWorkspaceDialog, setShowNewWorkspaceDialog] = React.useState(false);
   const [newWorkspaceName, setNewWorkspaceName] = React.useState('');
-  // const { plan_id }: any = usePlanStore();
   const { data: plan, isLoading: planLoading, error: planError } = usePlan();
 
   const handleAddWorkspace = async () => {
@@ -196,7 +195,7 @@ const WorkspaceSwitcher = ({
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent className="rounded-lg">
+      <DialogContent>
         <DialogHeader className="flex flex-col items-start">
           <DialogTitle>Create workspace</DialogTitle>
           <DialogDescription>Add a new workspace to manage data.</DialogDescription>
