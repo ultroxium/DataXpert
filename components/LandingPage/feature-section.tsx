@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+// import "slick-carousel/slick/slick.css"
+// import "slick-carousel/slick/slick-theme.css"
 
 const features = [
   {
@@ -43,7 +43,7 @@ const FeatureCard = ({ title, description, icon }: { title: string; description:
 )
 
 export function FeaturesSection() {
-  const [sliderRef, setSliderRef] = useState<Slider | null>(null)
+  // const [sliderRef, setSliderRef] = useState<Slider | null>(null)
 
   const settings = {
     dots: true,
@@ -56,7 +56,7 @@ export function FeaturesSection() {
 
   return (
     <section className="pb-24">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative">
           <Slider ref={(slider) => setSliderRef(slider)} {...settings}>
             {features.map((feature, index) => (
@@ -78,7 +78,7 @@ export function FeaturesSection() {
             <ChevronRight className="w-6 h-6" />
           </motion.button>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }

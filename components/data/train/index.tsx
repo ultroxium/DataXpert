@@ -27,6 +27,8 @@ import { useTrainStoreNew } from '@/store/train';
 import MultiSelector from '@/components/common/MultiSelector';
 import AlertBox from '@/components/common/AlertBox';
 import { ConfirmationAlert } from '@/components/common/confirmation-alert';
+import { cn } from '@/lib/utils';
+import { Colors } from '@/constant/color';
 
 const CLASSIFICATION_MODELS = [
   'random_forest_classifier',
@@ -202,7 +204,7 @@ export default function TrainPage({
   const showTrainedModel = TrainedData?.is_trained && !isModelDeleted && trainedModelError === null;
 
   return (
-    <div className="flex flex-1 gap-8">
+    <div className="flex flex-1 gap-8 px-8">
 
       {/* Show autoML */}
       {!showTrainedModel && activeAlgorithm === 'auto' && (
@@ -236,13 +238,13 @@ export default function TrainPage({
 
       {
         <>
-          { activeAlgorithm !== 'auto' && (
-            <div className="flex flex-col relative">
+          {activeAlgorithm !== 'auto' && (
+            <div className="h-[calc(100vh-4rem)] flex flex-col relative items-center pt-8">
               {isModelListLoading
                 ? [...Array(6)].map((_, index) => (
                   <Card
                     key={index}
-                    className="shadow-none border-r border-b rounded-none w-[16rem] h-[80px] flex items-center hover:bg-secondary/40 cursor-pointer">
+                    className="shadow-none rounded-none w-[16rem] h-[80px] flex items-center hover:bg-secondary/40 cursor-pointer">
                     <div className="w-12 h-12 m-4">
                       <Skeleton className="h-full w-full rounded-md" />
                     </div>
@@ -252,13 +254,15 @@ export default function TrainPage({
                     </div>
                   </Card>
                 ))
-                : filteredModelList.map((item) => (
+                : filteredModelList.map((item, index) => (
                   <div
                     key={item.key}
-                    className={`border-b border-r h-[80px] w-[16rem] flex items-center ${item.key === activeAlgorithm ? 'bg-secondary' : ''
-                      } flex hover:bg-secondary/40 cursor-pointer`}
+                    className={`h-[80px] w-[16rem] rounded-lg flex items-center ${item.key === activeAlgorithm ? 'bg-gradient-to-r from-blue-400/40 to-secondary/10' : ''
+                      } flex hover:bg-gradient-to-r hover:from-blue-400/40 hover:to-secondary/10 cursor-pointer`}
                     onClick={() => handleAlgorithmSelect(item.key)}>
-                    <div className="w-12 h-12 m-4 bg-secondary rounded-md flex items-center justify-center font-bold text-xl">
+                    <div className={cn("w-12 h-12 m-4 rounded-md flex items-center justify-center font-bold text-xl",)} style={{
+                      backgroundColor: (Colors[index].hex + '60')
+                    }}>
                       {item.name.charAt(0)}
                     </div>
                     <div className="flex-1 p-4 flex flex-col pl-0">
@@ -288,7 +292,7 @@ export default function TrainPage({
 
 
 
-          <div className='w-full flex flex-col gap-8 pr-8'>
+          <div className='w-full flex flex-col gap-8'>
             <div className="w-full">
               {activeCategory && !showTrainedModel && (
                 <SuggestionsDisplay

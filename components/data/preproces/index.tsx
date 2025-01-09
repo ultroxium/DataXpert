@@ -19,6 +19,9 @@ import { CommonConfirmationAlert } from '@/components/common/common-confirmation
 import MultiSelector from '@/components/common/MultiSelector';
 import { useDatasetStoreNew } from '@/store/datasets';
 import { useProcessStoreNew } from '@/store/pre-processing';
+import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import { Colors } from '@/constant/color';
 const SelectMethods = React.lazy(() => import('./SelectEncodingTechnique'));
 const PreviewTable = React.lazy(() => import('./preview-table'));
 
@@ -114,30 +117,27 @@ const FeatureEngineeringPage = ({
   });
 
   return (
-    <div className="w-full flex gap-8 items-start justify-start p-8">
-      <Card className='w-[16rem] sticky top-8 shadow-none'>
-        <CardHeader className='border-b p-4'>
-          Select Option
-        </CardHeader>
-        <CardContent className='flex items-center justify-center flex-col h-full space-y-4 p-4'>
+    <div className="w-full flex p-8 gap-8 items-start justify-start">
+        <div className='w-18rem grid grid-cols-1 h-[12rem] gap-8 sticky top-8'>
           {filteredFeatures.map((feature, index) => (
             <Button
               key={index}
-              variant={selectedFeature === feature?.name ? 'secondary' : 'ghost'}
-              className={`w-full flex items-center justify-between text-ls font-normal ${selectedFeature === feature?.name && 'text-primary font-semibold'
+              variant={selectedFeature === feature?.name ? 'secondary':'ghost'}
+              className={`w-full flex flex-col items-center justify-center gap-4 py-4 h-full font-normal ${selectedFeature === feature?.name && 'text-primary'
                 }`}
               onClick={() => handleNavigation(feature?.name)}>
-              <span className="flex items-center gap-2">
+              <div className="h-16 w-16 flex items-center justify-center rounded-lg" style={{
+                backgroundColor:( Colors[index+8].hex + '99'),
+              }}>
                 {feature?.icon}
-                {feature?.name}
-              </span>
+              </div>
+                <span className='overflow-hidden break-words'>{feature?.name}</span>
             </Button>
           ))}
-        </CardContent>
-      </Card>
+        </div>
       {/* Content */}
       <div
-        className={`flex-1 flex flex-col gap-4 overflow-auto w-full}`}>
+        className={`flex-1 flex flex-col gap-4 overflow-auto w-full`}>
         <div className=" w-full flex gap-4 flex-col md:flex-row">
           <div className="flex-1 max-w-[500px] flex flex-col gap-4">
             <Suspense fallback={<SelectColumnsComponentSkeleton />}>
@@ -159,7 +159,7 @@ const FeatureEngineeringPage = ({
             </Suspense>
           </div>
           {isColumnsSelected && (
-            <div className="flex-1 max-w-[500px]">
+            <div className="flex-1 max-w-[500px] ">
               <Suspense fallback={<SelectMethodsSkeleton />}>
                 <SelectMethods
                   methods={methods}
@@ -202,21 +202,22 @@ const FeatureEngineeringPage = ({
 
         <div className="flex flex-col gap-4 py-4">
           <h4 className="font-semibold">Columns</h4>
-          <div className=" flex flex-wrap gap-4 ">
-            {columnDetails?.map((col: any, index: number) => (
-              <div key={index} className="flex items-center gap-2">
-                <span className="text-14">{col.name}</span>
-                <span
-                  className={`${col.type === 'number'
-                      ? 'bg-green-200 dark:bg-green-600/20'
-                      : 'bg-red-200 dark:bg-red-600/20 dark:text-red-500'
-                    } rounded-full px-2 py-1 text-12`}>
-                  {col.type === 'number' ? 'numeric' : col.type}
-                </span>
-                <Separator orientation="vertical" className="h-8" />
-              </div>
-            ))}
-          </div>
+          <div className="flex flex-wrap gap-3">
+          {columnDetails?.map((col, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 p-2 rounded-md border bg-background"
+            >
+              <span className="text-sm font-medium">{col.name}</span>
+              <Badge
+                variant={col.type === "number" ? "secondary" : "outline"}
+                className="text-xs font-normal"
+              >
+                {col.type}
+              </Badge>
+            </div>
+          ))}
+        </div>
         </div>
 
         <Separator />

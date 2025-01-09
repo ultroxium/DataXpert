@@ -3,7 +3,7 @@ import { Binary, MinusSquare, Scaling, SquareArrowOutUpRight } from 'lucide-reac
 export const DataTransformationToolsBasic = [
   {
     name: 'Feature Reduction',
-    icon: <MinusSquare size={20} />,
+    icon: <MinusSquare size={40} />,
     orderIndex: 4,
     methods: [
       {
@@ -32,7 +32,7 @@ export const DataTransformationToolsBasic = [
 
   {
     name: 'Encoding',
-    icon: <Binary size={20} />,
+    icon: <Binary size={40} />,
     orderIndex: 1,
     methods: [
       {
@@ -68,7 +68,7 @@ export const DataTransformationToolsBasic = [
   },
   {
     name: 'Outlier Handling',
-    icon: <SquareArrowOutUpRight size={20} />,
+    icon: <SquareArrowOutUpRight size={40} />,
     orderIndex: 3,
     methods: [
       {
@@ -91,7 +91,7 @@ export const DataTransformationToolsBasic = [
   },
   {
     name: 'Scaling',
-    icon: <Scaling size={20} />,
+    icon: <Scaling size={40} />,
     orderIndex: 2,
     methods: [
       {
