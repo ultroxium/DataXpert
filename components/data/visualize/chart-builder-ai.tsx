@@ -44,7 +44,7 @@ export function ChartBuilderAI() {
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-80 shadow-lg overflow-hidden">
+    <Card className="fixed bottom-0 right-[20rem] w-80 overflow-hidden">
       <CardHeader 
         className="cursor-pointer py-2" 
         onClick={() => setIsOpen(!isOpen)}

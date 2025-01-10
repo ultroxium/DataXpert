@@ -239,12 +239,12 @@ export default function TrainPage({
       {
         <>
           {activeAlgorithm !== 'auto' && (
-            <div className="h-[calc(100vh-4rem)] flex flex-col relative items-center pt-8">
+            <div className="h-[calc(100vh-4rem)] flex flex-col items-center pt-8 sticky top-0">
               {isModelListLoading
                 ? [...Array(6)].map((_, index) => (
                   <Card
                     key={index}
-                    className="shadow-none rounded-none w-[16rem] h-[80px] flex items-center hover:bg-secondary/40 cursor-pointer">
+                    className="shadow-none rounded-none border-none w-[16rem] h-[80px] flex items-center hover:bg-secondary/40 cursor-pointer">
                     <div className="w-12 h-12 m-4">
                       <Skeleton className="h-full w-full rounded-md" />
                     </div>
@@ -257,8 +257,8 @@ export default function TrainPage({
                 : filteredModelList.map((item, index) => (
                   <div
                     key={item.key}
-                    className={`h-[80px] w-[16rem] rounded-lg flex items-center ${item.key === activeAlgorithm ? 'bg-gradient-to-r from-blue-400/40 to-secondary/10' : ''
-                      } flex hover:bg-gradient-to-r hover:from-blue-400/40 hover:to-secondary/10 cursor-pointer`}
+                    className={`h-[80px] w-[16rem] rounded-lg flex items-center ${item.key === activeAlgorithm ? 'bg-blue-400/20' : ''
+                      } flex  hover:bg-blue-400/20 cursor-pointer`}
                     onClick={() => handleAlgorithmSelect(item.key)}>
                     <div className={cn("w-12 h-12 m-4 rounded-md flex items-center justify-center font-bold text-xl",)} style={{
                       backgroundColor: (Colors[index].hex + '60')

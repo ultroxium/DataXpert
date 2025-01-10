@@ -46,7 +46,7 @@ const DataVisualizePage = ({
   );
 
   return (
-    <div className='flex w-full items-start justify-between px-8 gap-8'>
+    <div className='flex w-full items-start justify-between pl-8 gap-8'>
       {
         <div className="flex-1 h-full py-8">
           {/* <BeautifulChartRibbon /> */}
