@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { getTokenFromCookies } from '@/config/token-config';
 
 async function handleMissing(workspace_id: string, dataset_id: string, type: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/handle-missing-value?workspace_id=${workspace_id}&dataset_id=${dataset_id}&handleType=${type}`,
     {},

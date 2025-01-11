@@ -4,7 +4,7 @@ import { getTokenFromCookies } from '@/config/token-config';
 
 // Helper function to fetch charts
 async function fetchCharts(wid: string, id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/chart/?workspace_id=${wid}&dataset_id=${id}`,
     {
@@ -46,7 +46,7 @@ export async function GET(
 
 // post
 async function postChartsData(workspaceId: string, datasetId: string, data: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/chart/?workspace_id=${workspaceId}&dataset_id=${datasetId}`,
     data,
@@ -60,7 +60,7 @@ async function postChartsData(workspaceId: string, datasetId: string, data: any)
 
 //duplicate
 async function duplicateChart(workspaceId: string, chartId: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/chart/duplicate?workspace_id=${workspaceId}&chart_id=${chartId}`,
     {},
@@ -107,7 +107,7 @@ export async function POST(
 
 //delete chart
 async function deleteChart(wid: string, id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/chart/${id}?workspace_id=${wid}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -140,7 +140,7 @@ export async function DELETE(
 
 //update
 async function updateChart(workspaceId: string, chartId: string, data: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/chart/${chartId}?workspace_id=${workspaceId}`,
     data,

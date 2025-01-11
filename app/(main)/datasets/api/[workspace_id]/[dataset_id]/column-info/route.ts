@@ -5,7 +5,7 @@ import { getTokenFromCookies } from '@/config/token-config';
 
 // Helper function to fetch workspaces
 async function fetchColumnDetails(wid: string, id: string, isProcessed: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/column-info?workspace_id=${wid}&dataset_id=${id}&isProcessed=${isProcessed}`,
     {

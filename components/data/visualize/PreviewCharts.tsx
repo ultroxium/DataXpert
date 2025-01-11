@@ -296,7 +296,7 @@ export default function ChartDashboard({ chartsData, columnDetails, workspaceId,
     return (
       <Suspense
         fallback={
-          <div className={`${isFullSize ? "h-[400px]" : "h-[16rem]"} w-full flex items-center`}>
+          <div className={`${isFullSize ? "h-[400px]" : "h-full"} w-full flex items-center`}>
             <Skeleton className="h-full w-full" />
           </div>
         }>

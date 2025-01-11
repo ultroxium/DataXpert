@@ -11,7 +11,7 @@ async function getProcessedTableDatas(
   limit: string,
   offset: string,
 ) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/?workspace_id=${workspace_id}&dataset_id=${dataset_id}&query=${query}&limit=${limit}&offset=${offset}`,
     {
@@ -24,7 +24,7 @@ async function getProcessedTableDatas(
 
 //get distributions
 async function getDistributions(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/distributions?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     {
@@ -37,7 +37,7 @@ async function getDistributions(workspace_id: string, dataset_id: string) {
 
 //get correlation
 async function getCorrelation(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/correlation?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     {
@@ -50,7 +50,7 @@ async function getCorrelation(workspace_id: string, dataset_id: string) {
 
 //get back to previous version
 async function revertToOriginal(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/back-to-original?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     {
@@ -105,7 +105,7 @@ export async function GET(
 // post
 //cleanData
 async function cleanData(workspace_id: string, dataset_id: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/clean?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     config,
@@ -119,7 +119,7 @@ async function cleanData(workspace_id: string, dataset_id: string, config: any) 
 
 //encodeData
 async function encodeData(workspace_id: string, dataset_id: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/encode?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     config,
@@ -133,7 +133,7 @@ async function encodeData(workspace_id: string, dataset_id: string, config: any)
 
 //handleOutliers
 async function handleOutliers(workspace_id: string, dataset_id: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/outlier-handler?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     config,
@@ -147,7 +147,7 @@ async function handleOutliers(workspace_id: string, dataset_id: string, config: 
 
 //normalizeData
 async function normalizeData(workspace_id: string, dataset_id: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/normalize?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     config,
@@ -161,7 +161,7 @@ async function normalizeData(workspace_id: string, dataset_id: string, config: a
 
 //autoProcess
 async function autoProcess(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/auto-process?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     '',

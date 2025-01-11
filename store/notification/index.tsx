@@ -4,12 +4,13 @@ import { ApiRoutes } from '@/config/api-routes';
 import { toast } from 'sonner';
 
 interface Notification {
-  title: string;
-  message: string;
-  tag: string;
-  created_at: string;
+  id: number
+  title: string
+  message: string
+  tag: string
+  created_at: string
+  isRead: boolean
 }
-
 interface NotificationsState {
   isLoading: boolean;
   isSuccess: boolean;

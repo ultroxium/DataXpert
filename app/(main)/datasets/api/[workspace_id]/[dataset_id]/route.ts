@@ -7,7 +7,7 @@ export async function GET(
   req: Request,
   { params }: { params: { workspace_id: string; dataset_id: string } },
 ) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   const { workspace_id, dataset_id } = params;
   const current_url = new URL(req.url);
   const query = current_url.searchParams.get('query');

@@ -7,7 +7,7 @@ export async function GET(
   req: Request,
   { params }: { params: { workspace_id: string; dataset_id: string } },
 ) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   const { workspace_id, dataset_id } = params;
   const url = `${process.env.NEXT_PUBLIC_API_URL}/dataset/data-insights?workspace_id=${workspace_id}&dataset_id=${dataset_id}`;
 

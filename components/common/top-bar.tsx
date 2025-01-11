@@ -12,65 +12,34 @@ import {
 import { CustomTooltip } from './custom-tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { UserPlus } from 'lucide-react';
-import { LinkShare } from '../dashboard/ShareLink';
+import Link from 'next/link';
+import { useWorkspace } from '@/hooks/use-workspace';
+import InvitePopover from '../dashboard/ShareLink';
 
 interface TopbarProps {
   layout?: 'workspace' | 'dataset' | 'settings' | 'dashboard' | 'public';
   title?: string;
   workspaceId?: string;
   datasetId?: string;
-  workspaceData?: any;
 }
 
-const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId, workspaceData }: TopbarProps) => {
+const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId }: TopbarProps) => {
+  const { data, isLoading, error } = useWorkspace();
 
   return (
     <div className="h-16 border-b  bg-gradient-to-b from-slate-200 to-white dark:from-slate-900 dark:to-background">
       <div className="h-full flex w-full items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          {/* logo */}
-          <div className="w-36 h-16 bg-[url('/logo.png')] dark:bg-[url('/logo_dark.png')] mix-blend-multiply dark:mix-blend-color-dodge bg-no-repeat bg-center bg-contain"/>
-          {/* <Button variant={'outline'} size={'icon'} className='rounded-full'>
-            <SidebarTrigger />
-          </Button> */}
-          {/* <span className='text-24 font-normal text-muted-foreground'>{title}</span> */} 
+          <Link href="/">
+            <div className="w-36 h-16 bg-[url('/logo.png')] dark:bg-[url('/logo_dark.png')] bg-no-repeat bg-center bg-contain" />
+          </Link>
         </div>
-
-        {/* {workspaceData?.name !== 'Default Workspace' && (
-          <div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                {workspaceData?.teams[0]?.members.length > 1 ? (
-                  <div className="flex -space-x-2 overflow-hidden cursor-pointer">
-                    {workspaceData?.teams[0]?.members.map((member: any, index: number) => (
-                      <CustomTooltip title={member?.user_obj?.name} key={index}>
-                        <Avatar className="w-8 h-8 border-2 border-white rounded-full">
-                          <AvatarImage src={member?.user_obj?.picture} alt={member?.user_obj?.name} />
-                          <AvatarFallback>{member?.user_obj?.name.charAt(0).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                      </CustomTooltip>
-                    ))}
-                  </div>
-                ) : (
-                  <Button variant="outline" >
-                    <UserPlus size={16} />
-                    Invite
-                  </Button>
-                )}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" side='right'>
-                <LinkShare data={workspaceData} />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        )} */}
 
         {layout === 'workspace' && (
           <div className="flex items-center gap-4">
-            <Button variant="outline" >
-              <UserPlus size={16} />
-              Invite
-            </Button>
+            {data?.name !== 'Default Workspace' && (
+              <InvitePopover data={data}/>
+            )}
             <NotificationsCard />
             <SettingsMenu isLabel={false} />
           </div>
@@ -78,10 +47,9 @@ const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId, work
 
         {layout === 'dataset' && (
           <div className="flex gap-4">
-            <Button variant="outline" >
-              <UserPlus size={16} />
-              Invite
-            </Button>
+            {data?.name !== 'Default Workspace' && (
+              <InvitePopover data={data}/>
+            )}
             <NotificationsCard />
             <SettingsMenu isLabel={false} />
           </div>

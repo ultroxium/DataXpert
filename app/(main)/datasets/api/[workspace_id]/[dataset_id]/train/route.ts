@@ -4,7 +4,7 @@ import { getTokenFromCookies } from '@/config/token-config';
 
 // fetch model list
 async function getModelList(workspace_id: string, dataset_id: string, isbasic: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/model/list?workspace_id=${workspace_id}&dataset_id=${dataset_id}&isbasic=${isbasic}`,
     {
@@ -17,7 +17,7 @@ async function getModelList(workspace_id: string, dataset_id: string, isbasic: s
 
 //get suggestions
 async function getSuggestions(workspace_id: string, dataset_id: string, problem: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/processing/suggestions?workspace_id=${workspace_id}&dataset_id=${dataset_id}&problem=${problem}`,
     {
@@ -30,7 +30,7 @@ async function getSuggestions(workspace_id: string, dataset_id: string, problem:
 
 //get model
 async function getModel(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/model/?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     {
@@ -77,7 +77,7 @@ export async function GET(
 
 //post for train
 async function trainModel(workspace_id: string, dataset_id: string, type: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/model/?workspace_id=${workspace_id}&dataset_id=${dataset_id}&type=${type}`,
@@ -92,7 +92,7 @@ async function trainModel(workspace_id: string, dataset_id: string, type: string
 
 //post for automl
 async function trainAutoML(workspace_id: string, dataset_id: string, problem_type: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
 
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/model/auto-ml?workspace_id=${workspace_id}&dataset_id=${dataset_id}&problem_type=${problem_type}`,
@@ -145,7 +145,7 @@ export async function POST(
 
 //delete model
 async function deleteModel(workspace_id: string, dataset_id: string, model_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/model/?workspace_id=${workspace_id}&dataset_id=${dataset_id}&id=${model_id}`,
     {

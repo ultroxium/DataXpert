@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 // Fetch input columns
 async function getInputColumns(workspace_id: string, dataset_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/model/input-columns?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     {
@@ -47,7 +47,7 @@ export async function GET(
 
 // predict
 async function predict(workspace_id: string, dataset_id: string, config: any) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/model/predict/?workspace_id=${workspace_id}&dataset_id=${dataset_id}`,
     config,

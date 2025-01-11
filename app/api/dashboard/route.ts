@@ -4,13 +4,13 @@ import axios, { AxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 
 export interface Workspace {
-    id?: number; 
-    name: string;
-  }
+  id?: number; 
+  name: string;
+}
 
 // Helper function to fetch workspaces
 async function fetchWorkspaces() {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/workspace/`, {
     headers: {
       Authorization: `Bearer ${token}`, // Assuming token is static for now
@@ -19,7 +19,7 @@ async function fetchWorkspaces() {
 }
 
 async function fetchWorkspaceById(workspaceId: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/workspace/${workspaceId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ async function fetchWorkspaceById(workspaceId: string) {
 
 // Helper function to fetch default dataset
 async function fetchDefaultDataset() {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/dataset/default`, {
     headers: {
       Authorization: `Bearer ${token}`, // Assuming token is static for now
@@ -39,7 +39,7 @@ async function fetchDefaultDataset() {
 
 // Helper function to fetch datasets by workspace ID
 async function fetchDatasetsByWorkspaceId(workspaceId: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/dataset/?workspace_id=${workspaceId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ export async function GET(req: Request) {
 // POST handler
 
 async function addDataset(wid: string, values: FormData) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/?workspace_id=${wid}`,
     values,
@@ -99,7 +99,7 @@ async function addDataset(wid: string, values: FormData) {
 
 //add from api
 async function addDatasetFromAPI(wid: string, values: FormData) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/upload-from-url?workspace_id=${wid}`,
     values,
@@ -113,7 +113,7 @@ async function addDatasetFromAPI(wid: string, values: FormData) {
 }
 
 async function addWorkspace(newWorkspace: Workspace) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/workspace/`, newWorkspace, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -163,7 +163,7 @@ export async function POST(req: Request) {
 }
 // DELETE handler
 async function deleteWorkspace(workspaceId: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/workspace/${workspaceId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -172,7 +172,7 @@ async function deleteWorkspace(workspaceId: string) {
 }
 
 async function deleteDataset(workspaceId: string, datasetId: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.delete(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/${datasetId}?workspace_id=${workspaceId}`,
     {
@@ -215,7 +215,7 @@ export async function DELETE(req: Request) {
 
 //Move Dataset from one workspace to another
 async function moveDataset(did: string, current_wid: string, workspace_id: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/move?current_workspace_id=${current_wid}&workspace_id=${workspace_id}&dataset_id=${did}`,
     {},
@@ -229,7 +229,7 @@ async function moveDataset(did: string, current_wid: string, workspace_id: strin
 
 //refresh data
 async function refreshData(workspaceId: string, datasetId: string, refresh_period: string) {
-  const token = getTokenFromCookies();
+  const token = await getTokenFromCookies();
   return axios.put(
     `${process.env.NEXT_PUBLIC_API_URL}/dataset/refresh-api-data?workspace_id=${workspaceId}&dataset_id=${datasetId}&refresh_period=${refresh_period}`,
     {},

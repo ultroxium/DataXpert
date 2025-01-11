@@ -15,22 +15,22 @@ export default function LayoutProvider({
   }: {
     children: ReactNode;
   }) {
-  const [token, setToken] = useState<string | null>(null);
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const accessToken = Cookies.get('token');
-    if (accessToken !== token) {
-      setToken(accessToken);
-    }
-  }, [searchParams, token]);
+    const [token, setToken] = useState<string | null>(null);
+    const searchParams = useSearchParams();
+  
+    useEffect(() => {
+      const accessToken = Cookies.get('token');
+      if (accessToken !== token) {
+        setToken(accessToken);
+      }
+    }, [searchParams, token]);
   
 
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
       <QueryClientProvider client={queryClient}>
-        {token ? <WebSocketProvider>{children}</WebSocketProvider> : children}
+      {token ? <WebSocketProvider>{children}</WebSocketProvider> : children}
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </ThemeProvider>
