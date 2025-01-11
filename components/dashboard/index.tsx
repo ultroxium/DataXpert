@@ -130,8 +130,8 @@ const DashboardComponent = ({
                 )}
               </div>
             </div>
-
-          <Card className='h-[60vh] w-[20rem] sticky top-0 shadow-none bg-gray-50 dark:bg-slate-800/10'>
+          {/* TODO */}
+          {/* <Card className='h-[60vh] w-[20rem] sticky top-0 shadow-none bg-gray-50 dark:bg-slate-800/10'>
             <CardHeader className='border-b p-4'>
               Recent Models
             </CardHeader>
@@ -139,7 +139,7 @@ const DashboardComponent = ({
               <BoxIcon size={44} className='text-muted-foreground' />
               <span>No data found</span>
             </CardContent>
-          </Card>
+          </Card> */}
         </section>
 
       </div>
@@ -147,47 +147,6 @@ const DashboardComponent = ({
   );
 };
 
-// const DatasetTable = ({ datasets, widNo, FilteredWorkspaces, deleteDatasetMutation, moveDatasetMutation }) => (
-//   <div className="w-full overflow-auto">
-
-//       <div>
-//         {datasets.map((file: any, index: number) => (
-//           <Card
-//             key={file.id}
-//             className={index % 2 === 0 ? 'bg-muted/30' : 'bg-muted/50'}
-//           >
-//             <TableCell className="font-medium border-t border-border">
-//               <Link
-//                 href={`/datasets/${file.workspace_id}/${file.id}?tab=overview`}
-//                 className="flex items-center text-primary hover:underline"
-//               >
-//                 <FileSpreadsheet className="mr-2 h-4 w-4" />
-//                 <span>{file.name}</span>
-//               </Link>
-//             </TableCell>
-//             <TableCell className="text-muted-foreground border-t border-border">
-//               {file.updated_at && moment(file.updated_at).isValid()
-//                 ? moment(file.updated_at).fromNow()
-//                 : 'N/A'}
-//             </TableCell>
-//             <TableCell className="text-muted-foreground border-t border-border">
-//               {moment(file.created_at).fromNow()}
-//             </TableCell>
-//             <TableCell className="text-right border-t border-border">
-//               <DatasetActions
-//                 dataset={file}
-//                 widNo={widNo}
-//                 FilteredWorkspaces={FilteredWorkspaces}
-//                 deleteDatasetMutation={deleteDatasetMutation}
-//                 moveDatasetMutation={moveDatasetMutation}
-//               />
-//             </TableCell>
-//           </Card>
-
-//         ))}
-//         </div>
-//   </div>
-// );
 
 const EmptyState = () => (
   <div className="text-center py-12">

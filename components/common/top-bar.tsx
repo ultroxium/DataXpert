@@ -29,11 +29,11 @@ const Topbar = ({ layout = 'workspace', title = "", workspaceId, datasetId, work
       <div className="h-full flex w-full items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* logo */}
-          <div className="w-36 h-16 bg-[url('/logo.png')] dark:bg-[url('/logo_dark.png')] bg-no-repeat bg-center bg-contain"/>
+          <div className="w-36 h-16 bg-[url('/logo.png')] dark:bg-[url('/logo_dark.png')] mix-blend-multiply dark:mix-blend-color-dodge bg-no-repeat bg-center bg-contain"/>
           {/* <Button variant={'outline'} size={'icon'} className='rounded-full'>
             <SidebarTrigger />
           </Button> */}
-          {/* <span className='text-24 font-normal text-muted-foreground'>{title}</span> */}
+          {/* <span className='text-24 font-normal text-muted-foreground'>{title}</span> */} 
         </div>
 
         {/* {workspaceData?.name !== 'Default Workspace' && (

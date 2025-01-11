@@ -10,10 +10,11 @@ interface DoughnutChartProps {
 const Doughnut: React.FC<DoughnutChartProps> = ({ data, xLabel }) => {
   const option = {
     grid: {
-      left: '20%',
-      right: '20%',
-      bottom: '20%',
-      top: '20%',
+      // left: '20%',
+      // right: '20%',
+      // bottom: '20%',
+      // top: '20%',
+      show: false,
       containLabel: true,
     },
     toolbox: {
@@ -25,14 +26,14 @@ const Doughnut: React.FC<DoughnutChartProps> = ({ data, xLabel }) => {
       trigger: 'item',
     },
     legend: {
-      top: '5%',
+      top: '0%',
       left: 'center',
     },
     series: [
       {
         name: xLabel,
         type: 'pie',
-        radius: ['20%', '50%'],
+        radius: ['30%', '60%'],
         avoidLabelOverlap: false,
         label: {
           show: false,
@@ -54,7 +55,7 @@ const Doughnut: React.FC<DoughnutChartProps> = ({ data, xLabel }) => {
   };
 
   return (
-    <div className="h-full xxs:w-[350px] md:w-full flex items-center justify-center">
+    <div className="h-full w-full flex items-center justify-center">
       <ReactECharts option={option} className="h-full w-full" />
     </div>
   );

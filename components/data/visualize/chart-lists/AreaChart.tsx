@@ -75,7 +75,7 @@ const AreaChart: React.FC<AreaChartProps> = ({
   };
 
   return (
-    <div className="h-fullxxs:w-[350px] md:w-full flex items-center justify-center">
+    <div className="h-full w-full flex items-center justify-center">
       <ReactECharts option={option} className="h-full w-full" />
     </div>
   );

@@ -10,10 +10,11 @@ interface PiePlotChartProps {
 const PiePlot: React.FC<PiePlotChartProps> = ({ data, xLabel }) => {
   const option = {
     grid: {
-      left: '20%',
-      right: '20%',
-      bottom: '20%',
-      top: '20%',
+      // left: '20%',
+      // right: '20%',
+      // bottom: '20%',
+      // top: '20%',
+      show: false,
       containLabel: true,
     },
     tooltip: {
@@ -25,14 +26,14 @@ const PiePlot: React.FC<PiePlotChartProps> = ({ data, xLabel }) => {
       }
     },
     legend: {
-      orient: 'vertical',
-      right: 'right',
+      top: '0%',
+      left: 'center',
     },
     series: [
       {
         name: xLabel,
         type: 'pie',
-        radius: '45%',
+        radius: '60%',
         data: data,
         emphasis: {
           itemStyle: {
@@ -46,7 +47,7 @@ const PiePlot: React.FC<PiePlotChartProps> = ({ data, xLabel }) => {
   };
 
   return (
-    <div className="h-full xxs:w-[350px] md:w-full flex items-center justify-center">
+    <div className="h-full w-full flex items-center justify-center">
       <ReactECharts option={option} className="h-full w-full" />
     </div>
   );

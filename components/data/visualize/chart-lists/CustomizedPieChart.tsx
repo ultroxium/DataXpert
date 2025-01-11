@@ -69,7 +69,7 @@ const CustomizedPie: React.FC<CustomizedPieChartProps> = ({ data, xLabel }) => {
   };
 
   return (
-    <div className="h-full xxs:w-[350px] md:w-full flex items-center justify-center">
+    <div className="h-full w-full flex items-center justify-center">
       <ReactECharts option={option} className="h-full w-full" />
     </div>
   );

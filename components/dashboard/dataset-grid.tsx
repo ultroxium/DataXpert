@@ -32,7 +32,7 @@ export const DatasetGrid: React.FC<DatasetGridProps> = ({
   moveDatasetMutation 
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
       {datasets.map((file, index) => (
         <Card key={file.id} className="flex flex-col justify-between shadow-none bg-gray-50 dark:bg-slate-800/10">
           <CardContent className="pt-4">

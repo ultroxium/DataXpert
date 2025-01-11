@@ -73,7 +73,7 @@ const ScatterPlot: React.FC<ScatterPlotChartProps> = ({ data, xLabel, yLabel, pl
   };
 
   return (
-    <div className="h-full flex items-center justify-center xxs:w-[350px] md:w-full">
+    <div className="h-full flex items-center justify-center w-full">
       <ReactECharts option={option} className="h-full w-full" />
     </div>
   );

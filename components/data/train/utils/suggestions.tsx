@@ -24,7 +24,7 @@ export default function SuggestionsDisplay({
   const toggleExpand = () => setIsExpanded(prev => !prev)
 
   return (
-    <Alert className="mt-12 border-l-8 border-r-0 border-t-0 border-b-0">
+    <Alert className="mt-8 border-l-8 border-r-0 border-t-0 border-b-0">
       <Lightbulb className="h-4 w-4" />
       <AlertTitle className="mb-2 text-base font-semibold">
         Suggestions for {activeCategory}

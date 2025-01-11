@@ -46,11 +46,11 @@ const DataVisualizePage = ({
   );
 
   return (
-    <div className='flex w-full items-start justify-between pl-8 gap-8'>
+    <div className='flex w-full items-start justify-between pl-8 gap-8 bg-gray-50 dark:bg-slate-800/20'>
       {
         <div className="flex-1 h-full py-8">
           {/* <BeautifulChartRibbon /> */}
-          <div className="w-full flex items-center justify-start gap-4">
+          {/* <div className="w-full flex items-center justify-start gap-4">
             <div className="relative flex items-center ">
                 <Search size={16} className="absolute left-3" />
                 <input
@@ -61,8 +61,8 @@ const DataVisualizePage = ({
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-          {/* <PresetShare workspaceId={workspaceId} datasetId={datasetId} /> */}
-          </div>
+          <PresetShare workspaceId={workspaceId} datasetId={datasetId} />
+          </div> */}
 
           <Suspense>
             {isChartDataLoading && (
