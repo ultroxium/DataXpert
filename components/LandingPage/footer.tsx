@@ -5,9 +5,9 @@ import Logo from '../logo'
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t">
-      <div className="container mx-auto py-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col md:flex-row justify-between items-center w-full">
+          <div className="mb-4 md:mb-0 flex flex-col items-center md:items-start">
             <Link href="/" className="text-2xl font-bold">
               <img src="/logo.png" alt="Logo" className='w-24 h-10 object-contain'/>
             </Link>
@@ -17,7 +17,7 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-6">
-            <a href="https://github.com/ultroxium/DataXpert" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
               <Github size={20} />
               <span className="sr-only">GitHub</span>
             </a>
@@ -27,7 +27,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="mt-4 text-sm text-muted-foreground">
+        <div className="mt-4 text-sm text-muted-foreground text-center md:text-start">
           © {new Date().getFullYear()} DataXpert. All rights reserved.
         </div>
       </div>

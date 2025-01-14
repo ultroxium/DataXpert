@@ -22,7 +22,7 @@ export default function Hero() {
 
         {/* Content */}
         <div className="relative z-10 max-w-2xl mx-auto text-center">
-          <h1 className="text-slate-700 sm:text-5xl md:text-6xl">
+          <h1 className="text-slate-700 text-5xl md:text-6xl">
             Unlock the Power of Your Data
           </h1>
           <p className="mt-3 max-w-md mx-auto text-base text-slate-600 sm:text-lg md:mt-5 md:text-xl">

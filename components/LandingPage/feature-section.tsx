@@ -24,7 +24,7 @@ const features = [
     id: 4,
     title: 'Predictions',
     description:
-      'Make predictions with your trained models and deploy them with ease.',
+      'Make predictions with your trained models and use them with ease.',
   }
 ]
 

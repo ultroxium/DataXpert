@@ -13,17 +13,12 @@ export default function Navbar() {
             <img src="/logo.png" alt="Logo" className='w-24 h-10 object-contain'/>
             </Link>
           </div>
-          <div className="hidden md:block">
+          <div >
             <div className="ml-10 flex items-baseline space-x-4">
               
-              <Link href="/readme" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+              <Link href="/readme" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium hidden md:block">
                 Readme
               </Link>
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="https://github.com/yourusername/yourrepo" target="_blank" rel="noopener noreferrer">
-                  <Github size={16}/>
-                </Link>
-              </Button>
               <LoginDialog title='Sign in'/>
             </div>
           </div>
