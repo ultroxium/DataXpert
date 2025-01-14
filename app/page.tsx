@@ -5,7 +5,7 @@ import { ReviewMarquee } from '@/components/LandingPage/reviews-section';
 import Navbar from '@/components/LandingPage/nav-bar';
 import Footer from '@/components/LandingPage/footer';
 import { constructMetadata } from '@/lib/metadata';
-import { FeaturesSection } from '@/components/LandingPage/feature-section';
+import FeaturesSection from '@/components/LandingPage/feature-section';
 
 export const metadata = constructMetadata({
   title: 'DataXpert - Predictive Analytics Made Easy',
@@ -15,7 +15,9 @@ export const metadata = constructMetadata({
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="overflow-auto" style={{
+      scrollbarWidth:"none",
+    }}>
       <Navbar />
       <Hero />
       <FeaturesSection/>

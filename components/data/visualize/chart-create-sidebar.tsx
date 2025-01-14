@@ -98,7 +98,9 @@ export function ChartCreateSideBar({
     };
 
     return (
-        <div className='w-[20rem] h-[calc(100vh-4rem)] border-l sticky top-0 bg-background'>
+        <div className='w-[20rem] h-[calc(100vh-4rem)] border-l sticky top-0 bg-background overflow-auto' style={{
+            scrollbarWidth:'none'
+        }}>
             <CardContent className='py-4'>
                 <Formik
                     initialValues={{
