@@ -6,6 +6,7 @@ import Navbar from '@/components/LandingPage/nav-bar';
 import Footer from '@/components/LandingPage/footer';
 import { constructMetadata } from '@/lib/metadata';
 import FeaturesSection from '@/components/LandingPage/feature-section';
+import { LayoutGridDemo } from '@/components/LandingPage/feature-grid';
 
 export const metadata = constructMetadata({
   title: 'DataXpert - Predictive Analytics Made Easy',
@@ -20,6 +21,7 @@ export default function Home() {
     }}>
       <Navbar />
       <Hero />
+      <LayoutGridDemo/>
       <FeaturesSection/>
       {/* <Features />
       <ReviewMarquee />
